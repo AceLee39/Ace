@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="run" name="SOCF">   
+    <path id="SOCF.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/commons-collections-3.2.jar"/>
+        <pathelement location="lib/commons-lang-2.6.jar"/>
+        <pathelement location="lib/dom4j-1.6.1.jar"/>
+        <pathelement location="lib/jcommon-1.0.21.jar"/>
+        <pathelement location="lib/jnlp.jar"/>
+        <pathelement location="lib/jfreechart-1.0.14.jar"/>
+        <pathelement location="lib/mvel2-2.0.19.jar"/>
+        <pathelement location="lib/mysql-connector-java-5.1.22-bin.jar"/>
+        <pathelement location="lib/poi-3.8-20120326.jar"/>
+        <pathelement location="lib/poi-ooxml-3.8-20120326.jar"/>
+		<pathelement location="lib/poi-ooxml-schemas-3.8-20120326.jar"/>
+		<pathelement location="lib/xmlbeans-2.3.0.jar"/>
+    </path>
+
+ <target name="run" >
+        <java classname="com.ace.capitalflows.start.MainStartUp" failonerror="true" fork="yes">
+            <classpath refid="SOCF.classpath"/>
+        </java>
+    </target>    
+</project>
