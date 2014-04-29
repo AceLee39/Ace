@@ -30,6 +30,7 @@ public class CustComboBoxPanel extends JPanel {
     private Vector<String> comboBoxData = new Vector<String>();
     private Vector<String> toComboBoxData;
     private Vector<String> fromComboBoxData;
+    private boolean isNeedReset = Boolean.TRUE;
 
     private CustComboBoxPanel() {
         this.setLayout(new GridLayout(1, 5));
@@ -57,9 +58,11 @@ public class CustComboBoxPanel extends JPanel {
     }
 
     public void setComboBoxData(final Vector<String> comboBoxData) {
-        this.comboBoxData = comboBoxData;
-        fromCombobox.setModel(new DefaultComboBoxModel<String>(comboBoxData));
-        toCombobox.setModel(new DefaultComboBoxModel<String>(reverseData()));
+        if (isNeedReset) {
+            this.comboBoxData = comboBoxData;
+            fromCombobox.setModel(new DefaultComboBoxModel<String>(comboBoxData));
+            toCombobox.setModel(new DefaultComboBoxModel<String>(reverseData()));
+        }
     }
 
     /**
@@ -143,4 +146,17 @@ public class CustComboBoxPanel extends JPanel {
         this.fromComboBoxData = fromComboBoxData;
     }
 
+    /**
+     * @return the isNeedReset
+     */
+    public boolean isNeedReset() {
+        return isNeedReset;
+    }
+
+    /**
+     * @param isNeedReset the isNeedReset to set
+     */
+    public void setNeedReset(final boolean isNeedReset) {
+        this.isNeedReset = isNeedReset;
+    }
 }

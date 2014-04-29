@@ -18,19 +18,26 @@ import javax.swing.JTabbedPane;
 @SuppressWarnings("serial")
 public class FrameCenterPanel extends JPanel {
     private final JTabbedPane tabs;
+    private final NianJdCenterPanel nianJdCenterPanel;
+
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
         this.add(CustComboBoxPanel.getInstance(), BorderLayout.NORTH);
         tabs = new JTabbedPane();
-        tabs.add("NianJd", new NianJdCenterPanel());
+        nianJdCenterPanel = new NianJdCenterPanel();
+        CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
+        tabs.add("NianJd", nianJdCenterPanel);
         this.add(tabs, BorderLayout.CENTER);
-        CustTablePanel.getInstance().setNeedReInit(Boolean.TRUE);
     }
 
     public String getCurTabName() {
         return tabs.getTitleAt(tabs.getSelectedIndex());
     }
 
-
-
+    /**
+     * @return the nianJdCenterPanel
+     */
+    public NianJdCenterPanel getNianJdCenterPanel() {
+        return nianJdCenterPanel;
+    }
 }
