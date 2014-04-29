@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.ace.capitalflows.action.actioncontext.UpdateDataActionContext;
 import com.ace.capitalflows.ui.component.CustComboBoxPanel;
-import com.ace.capitalflows.ui.component.CustTablePanel;
 import com.ace.capitalflows.ui.frame.MainFrame;
 
 /**
@@ -31,7 +30,7 @@ public class UpdateDataActionListener extends AbstractActionListener {
     @Override
     protected void updatedFrame() {
         final String[][] dataArray = (String[][]) params.get(UpdateDataActionContext.KEY_TABLE_DATA);
-        CustTablePanel.getInstance().setTableModel(dataArray);
+        MainFrame.getInstance().getCurTabPanel().setTableModel(dataArray);
         final List<String> comboBoxDataList = (List<String>) params.get(UpdateDataActionContext.KEY_COMBOBOX_DATA);
         CustComboBoxPanel.getInstance().updateData(comboBoxDataList);
         MainFrame.getInstance().repaint();

@@ -34,6 +34,10 @@ public class FrameCenterPanel extends JPanel {
         return tabs.getTitleAt(tabs.getSelectedIndex());
     }
 
+    public AbstractCenterPanel getCurTabPanel() {
+        return (AbstractCenterPanel) tabs.getSelectedComponent();
+    }
+
     /**
      * @return the nianJdCenterPanel
      */

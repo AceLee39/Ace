@@ -8,7 +8,7 @@ package com.ace.capitalflows.actionlistener;
 
 import org.jfree.ui.RefineryUtilities;
 
-import com.ace.capitalflows.ui.component.CustTablePanel;
+import com.ace.capitalflows.ui.frame.MainFrame;
 import com.ace.capitalflows.ui.frame.TimeSeriesChart;
 
 /**
@@ -31,7 +31,7 @@ public class ShowCharActionListener extends AbstractActionListener {
 
     @Override
     protected void updatedFrame() {
-        final String[][] dataArray = CustTablePanel.getInstance().getCurTableData();
+        final String[][] dataArray = MainFrame.getInstance().getCurTabPanel().getTableData();
         final TimeSeriesChart demo = new TimeSeriesChart("中国国际收支平衡", dataArray);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);

@@ -16,6 +16,7 @@ import com.ace.capitalflows.actionlistener.DeleteAllDataActionListener;
 import com.ace.capitalflows.actionlistener.ImportDataActionListener;
 import com.ace.capitalflows.actionlistener.ShowCharActionListener;
 import com.ace.capitalflows.actionlistener.UpdateDataActionListener;
+import com.ace.capitalflows.ui.component.AbstractCenterPanel;
 import com.ace.capitalflows.ui.component.FrameCenterPanel;
 
 
@@ -70,7 +71,7 @@ public class MainFrame extends BaseFrame {
 
 
     private static class MainFrameInstance {
-        private static MainFrame instance = new MainFrame("中国资本流动测算系统需求分析");
+        private static MainFrame instance = new MainFrame("ä¸­å›½èµ„æœ¬æµ�åŠ¨æµ‹ç®—ç³»ç»Ÿéœ€æ±‚åˆ†æž�");
     }
 
     public static MainFrame getInstance() {
@@ -107,5 +108,9 @@ public class MainFrame extends BaseFrame {
 
     public String getCurTabName() {
         return frameCenterPanel.getCurTabName();
+    }
+
+    public AbstractCenterPanel getCurTabPanel() {
+        return frameCenterPanel.getCurTabPanel();
     }
 }

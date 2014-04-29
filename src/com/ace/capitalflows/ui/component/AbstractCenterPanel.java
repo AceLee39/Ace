@@ -42,4 +42,11 @@ public abstract class AbstractCenterPanel extends JPanel {
 
     protected abstract String[] initTableHeader();
 
+    public void setTableModel(final String[][] tableData) {
+        tablePanel.setTableModel(tableData);
+    }
+
+    public String[][] getTableData() {
+        return tablePanel.getTableData();
+    }
 }
