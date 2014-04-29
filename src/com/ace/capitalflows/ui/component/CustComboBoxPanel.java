@@ -25,8 +25,8 @@ import com.ace.capitalflows.actionlistener.ComboBoxActionListener;
  */
 @SuppressWarnings("serial")
 public class CustComboBoxPanel extends JPanel {
-    private JComboBox<String> fromCombobox;
-    private JComboBox<String> toCombobox;
+    private JComboBox fromCombobox;
+    private JComboBox toCombobox;
     private Vector<String> comboBoxData = new Vector<String>();
     private Vector<String> toComboBoxData;
     private Vector<String> fromComboBoxData;
@@ -60,8 +60,8 @@ public class CustComboBoxPanel extends JPanel {
     public void setComboBoxData(final Vector<String> comboBoxData) {
         if (isNeedReset) {
             this.comboBoxData = comboBoxData;
-            fromCombobox.setModel(new DefaultComboBoxModel<String>(comboBoxData));
-            toCombobox.setModel(new DefaultComboBoxModel<String>(reverseData()));
+            fromCombobox.setModel(new DefaultComboBoxModel(comboBoxData));
+            toCombobox.setModel(new DefaultComboBoxModel(reverseData()));
         }
     }
 
@@ -82,19 +82,19 @@ public class CustComboBoxPanel extends JPanel {
         toCombobox.addActionListener(new ComboBoxActionListener());
     }
 
-    public JComboBox<String> getFromCombobox() {
+    public JComboBox getFromCombobox() {
         return fromCombobox;
     }
 
-    public void setFromCombobox(final JComboBox<String> fromCombobox) {
+    public void setFromCombobox(final JComboBox fromCombobox) {
         this.fromCombobox = fromCombobox;
     }
 
-    public JComboBox<String> getToCombobox() {
+    public JComboBox getToCombobox() {
         return toCombobox;
     }
 
-    public void setToCombobox(final JComboBox<String> toCombobox) {
+    public void setToCombobox(final JComboBox toCombobox) {
         this.toCombobox = toCombobox;
     }
 
@@ -109,8 +109,8 @@ public class CustComboBoxPanel extends JPanel {
     }
 
     private void initComponent() {
-        fromCombobox = new JComboBox<String>(fromComboBoxData);
-        toCombobox = new JComboBox<String>(toComboBoxData);
+        fromCombobox = new JComboBox(fromComboBoxData);
+        toCombobox = new JComboBox(toComboBoxData);
     }
 
 
@@ -120,8 +120,8 @@ public class CustComboBoxPanel extends JPanel {
 
     public void updateData(final List<String> comboBoxDataList) {
         this.setComboBoxData(comboBoxDataList);
-        fromCombobox.setModel(new DefaultComboBoxModel<String>(comboBoxData));
-        toCombobox.setModel(new DefaultComboBoxModel<String>(reverseData()));
+        fromCombobox.setModel(new DefaultComboBoxModel(comboBoxData));
+        toCombobox.setModel(new DefaultComboBoxModel(reverseData()));
     }
 
     private Vector<String> reverseData() {
