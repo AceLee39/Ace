@@ -9,8 +9,10 @@ package com.ace.capitalflows.entity.model;
 import java.util.List;
 import java.util.Vector;
 
-import com.ace.capitalflows.db.model.CuddingtonModel;
-import com.ace.capitalflows.db.model.ResidualModel;
+import com.ace.capitalflows.db.model.CuddingtonOracleModel;
+import com.ace.capitalflows.db.model.DaoModel;
+import com.ace.capitalflows.db.model.DaoModelFactory;
+import com.ace.capitalflows.db.model.ResidualOraclelModel;
 import com.ace.capitalflows.entity.Cuddington;
 import com.ace.capitalflows.entity.Residual;
 
@@ -19,6 +21,8 @@ import com.ace.capitalflows.entity.Residual;
  *
  */
 public class NianJdDataModel extends AbstractDataModel {
+    DaoModel cuddingtonModel = DaoModelFactory.getInstance().getDaoModel(CuddingtonOracleModel.class.getName());
+    DaoModel residualModel = DaoModelFactory.getInstance().getDaoModel(ResidualOraclelModel.class.getName());
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.AbstractDataModel#getTableData()
@@ -36,9 +40,10 @@ public class NianJdDataModel extends AbstractDataModel {
         return getNianJdComboBoxData();
     }
 
+    @SuppressWarnings("unchecked")
     public String[][] getNianJdData() {
-        final List<Residual> residuals = ResidualModel.findResiduals();
-        final List<Cuddington> cuddingtons = CuddingtonModel.findCuddingtons();
+        final List<Residual> residuals = residualModel.findAll();
+        final List<Cuddington> cuddingtons = cuddingtonModel.findAll();
         final String[][] nianJdData = new String[residuals.size()][3];
         for (int i=0; i<residuals.size(); i++) {
             nianJdData[i][0] = residuals.get(i).getNianJD();
@@ -48,18 +53,19 @@ public class NianJdDataModel extends AbstractDataModel {
         return nianJdData;
     }
 
+    @SuppressWarnings("unchecked")
     public Vector<String> getNianJdComboBoxData() {
-        return ResidualModel.findAllNianJd();
+        return residualModel.findComboBoxData();
     }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.DataModel#batchInsert(java.util.List[])
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Override
     public void batchInsert(final List... lists) {
-        ResidualModel.batchInsertResidual(lists[0]);
-        CuddingtonModel.batchInsertCuddington(lists[1]);
+        residualModel.batchInsert(lists[0]);
+        cuddingtonModel.batchInsert(lists[1]);
     }
 
     /* (non-Javadoc)
@@ -67,8 +73,8 @@ public class NianJdDataModel extends AbstractDataModel {
      */
     @Override
     public void deleteAll() {
-        ResidualModel.deleteAll();
-        CuddingtonModel.deleteAll();
+        residualModel.deleteAll();
+        cuddingtonModel.deleteAll();
     }
 
 }

@@ -18,6 +18,7 @@ import java.util.Properties;
 public class PropertiesUtil {
     private final Properties properties;
     private static final String DB_SETTING = "setting/DBSetting.properties";
+    private static final String DB_ORACLE_SETTING = "setting/DBOracleSetting.properties";
     private PropertiesUtil(final String filePath) {
         properties = new Properties();
         try {
@@ -33,6 +34,10 @@ public class PropertiesUtil {
         return DBPropertiesInstance.instance;
     }
 
+    public static PropertiesUtil getDBOracleInstance() {
+        return DBOraclePropertiesInstance.instance;
+    }
+
     public String getString(final String key) {
         return properties.getProperty(key);
     }
@@ -40,5 +45,9 @@ public class PropertiesUtil {
 
     private static class DBPropertiesInstance {
         private static PropertiesUtil instance = new PropertiesUtil(DB_SETTING);
+    }
+
+    private static class DBOraclePropertiesInstance {
+        private static PropertiesUtil instance = new PropertiesUtil(DB_ORACLE_SETTING);
     }
 }

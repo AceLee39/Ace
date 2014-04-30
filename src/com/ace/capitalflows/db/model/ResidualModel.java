@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import com.ace.capitalflows.db.DaoFactory;
 import com.ace.capitalflows.entity.Residual;
 import com.ace.capitalflows.utils.DBUtils;
 
@@ -22,16 +21,32 @@ import com.ace.capitalflows.utils.DBUtils;
  * @author Administrator
  *
  */
-public class ResidualModel {
+public class ResidualModel extends AbstractDaoModel{
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Override
+    public void batchInsert(final List items) {
+        batchInsertResidual(items);
+    }
 
-    public static void batchInsertResidual(final List<Residual> residuals) {
+    @SuppressWarnings("rawtypes")
+    @Override
+    public List findAll() {
+        return findResiduals();
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Vector findComboBoxData() {
+        return findAllNianJd();
+    }
+
+    private void batchInsertResidual(final List<Residual> residuals) {
         Connection conn = null;
         PreparedStatement ps = null;
-        final String sql = "INSERT INTO SOCF_RESIDUAL(ID,NIAN_JD,S,L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11,L12,L13,L14,L15,L16) " +
-                "VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        final String sql = getbatchInsertSql();
         try {
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             conn.setAutoCommit(false);
             ps = conn.prepareStatement(sql);
             for (final Residual residual : residuals) {
@@ -74,14 +89,14 @@ public class ResidualModel {
         }
     }
 
-    public static Vector<String> findAllNianJd() {
+    private Vector<String> findAllNianJd() {
         final Vector<String> allNianJd = new Vector<String>();
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             final String sql = "SELECT NIAN_JD FROM SOCF_RESIDUAL";
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -106,14 +121,14 @@ public class ResidualModel {
         return allNianJd;
     }
 
-    public static List<Residual> findResiduals() {
+    private List<Residual> findResiduals() {
         final List<Residual> residuals = new ArrayList<Residual>();
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             final String sql = "SELECT * FROM SOCF_RESIDUAL";
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -161,11 +176,12 @@ public class ResidualModel {
 
 
 
-    public static void deleteAll() {
+    @Override
+    public void deleteAll() {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             final String sql = "DELETE FROM SOCF_RESIDUAL WHERE NIAN_JD IS NOT NULL";
             ps = conn.prepareStatement(sql);
             ps.executeUpdate();

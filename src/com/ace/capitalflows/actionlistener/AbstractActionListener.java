@@ -26,7 +26,7 @@ import com.ace.capitalflows.ui.frame.MainFrame;
  *
  */
 public abstract class AbstractActionListener implements ActionListener {
-    protected final Map<String, Object> params = new HashMap<>();
+    protected final Map<String, Object> params = new HashMap<String, Object>();
 
 
     /* (non-Javadoc)

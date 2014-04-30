@@ -69,9 +69,8 @@ public class MainFrame extends BaseFrame {
 
     }
 
-
     private static class MainFrameInstance {
-        private static MainFrame instance = new MainFrame("ä¸­å›½èµ„æœ¬æµ�åŠ¨æµ‹ç®—ç³»ç»Ÿéœ€æ±‚åˆ†æž�");
+        private static MainFrame instance = new MainFrame("资本流动规模");
     }
 
     public static MainFrame getInstance() {
