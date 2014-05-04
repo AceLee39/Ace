@@ -24,6 +24,7 @@ public class CustTablePanel extends JPanel {
     private String[][] tableData;
     private String[] tableHeaderData;
     private String[][] curTableData;
+    private static CustTablePanel instance;
 
     private CustTablePanel() {
         tableModel = new DefaultTableModel();
@@ -86,7 +87,10 @@ public class CustTablePanel extends JPanel {
     }
 
     public static CustTablePanel getInstance() {
-        return CustTablePanelInstance.instance;
+        if (instance == null) {
+            instance = CustTablePanelInstance.instance;
+        }
+        return instance;
     }
 
     public boolean isNeedReInit() {

@@ -30,6 +30,7 @@ public class CustComboBoxPanel extends JPanel {
     private Vector<String> comboBoxData = new Vector<String>();
     private Vector<String> toComboBoxData;
     private Vector<String> fromComboBoxData;
+    private static CustComboBoxPanel instance;
 
     private CustComboBoxPanel() {
         this.setLayout(new GridLayout(1, 5));
@@ -44,7 +45,10 @@ public class CustComboBoxPanel extends JPanel {
     }
 
     public static CustComboBoxPanel getInstance() {
-        return CustComboBoxPanelInstance.instance;
+        if(instance == null) {
+            instance = CustComboBoxPanelInstance.instance;
+        }
+        return instance;
     }
 
     /**

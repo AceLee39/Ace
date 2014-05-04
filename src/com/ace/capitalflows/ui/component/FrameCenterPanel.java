@@ -23,6 +23,7 @@ public class FrameCenterPanel extends JPanel {
         this.add(CustComboBoxPanel.getInstance(), BorderLayout.NORTH);
         tabs = new JTabbedPane();
         tabs.add("NianJd", new NianJdCenterPanel());
+        tabs.add("NianYd", new NianYdCenterPanel());
         this.add(tabs, BorderLayout.CENTER);
         CustTablePanel.getInstance().setNeedReInit(Boolean.TRUE);
     }

@@ -61,7 +61,13 @@ create table t_user(
 );
 
 
-
+create table SOCF_YD_RESIDUAL (
+    id int primary key auto_increment,
+    nian_yd varchar(20) not null unique,
+    s double(30,4),
+    fdi double(30,4),
+    fbt double(30,4)
+);
 
 
 
