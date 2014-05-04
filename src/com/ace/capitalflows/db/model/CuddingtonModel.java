@@ -120,7 +120,7 @@ public class CuddingtonModel extends AbstractDaoModel{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "SELECT * FROM SOCF_CUDDINGTON";
+            final String sql = "SELECT * FROM SOCF_CUDDINGTON ORDER BY NIAN_JD";
             conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();

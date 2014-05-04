@@ -6,10 +6,11 @@
 // ============================================================================
 package com.ace.capitalflows.actionlistener;
 
+import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import com.ace.capitalflows.ui.frame.MainFrame;
-import com.ace.capitalflows.ui.frame.TimeSeriesChart;
+import com.ace.capitalflows.ui.frame.chart.ChartFactory;
 
 /**
  * @author Administrator
@@ -32,7 +33,7 @@ public class ShowCharActionListener extends AbstractActionListener {
     @Override
     protected void updatedFrame() {
         final String[][] dataArray = MainFrame.getInstance().getCurTabPanel().getTableData();
-        final TimeSeriesChart demo = new TimeSeriesChart("中国国际收支平衡", dataArray);
+        final ApplicationFrame demo = ChartFactory.getInstance().getChart(dataArray);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);

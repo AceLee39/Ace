@@ -23,4 +23,8 @@ public interface Constant {
 
     //DataModelPath
     public static final String DATA_MODEL_PATH = "com.ace.capitalflows.entity.model.%1$sDataModel";
+
+    //ChartFramePath
+    public static final String CHART_FRAME_PATH = "com.ace.capitalflows.ui.frame.chart.%1$sChartFrame";
+
 }

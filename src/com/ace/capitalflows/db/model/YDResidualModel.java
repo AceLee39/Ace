@@ -90,7 +90,7 @@ public class YDResidualModel extends AbstractDaoModel{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "SELECT NIAN_YD FROM SOCF_YD_RESIDUAL";
+            final String sql = "SELECT NIAN_YD FROM SOCF_YD_RESIDUAL ORDER BY NIAN_YD";
             conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -122,7 +122,7 @@ public class YDResidualModel extends AbstractDaoModel{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "SELECT * FROM SOCF_YD_RESIDUAL";
+            final String sql = "SELECT * FROM SOCF_YD_RESIDUAL ORDER BY NIAN_YD";
             conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();

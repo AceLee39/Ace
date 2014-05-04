@@ -95,7 +95,7 @@ public class ResidualModel extends AbstractDaoModel{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "SELECT NIAN_JD FROM SOCF_RESIDUAL";
+            final String sql = "SELECT NIAN_JD FROM SOCF_RESIDUAL ORDER BY NIAN_JD";
             conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -127,7 +127,7 @@ public class ResidualModel extends AbstractDaoModel{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "SELECT * FROM SOCF_RESIDUAL";
+            final String sql = "SELECT * FROM SOCF_RESIDUAL ORDER BY NIAN_JD";
             conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();

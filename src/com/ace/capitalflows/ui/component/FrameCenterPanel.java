@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.ace.capitalflows.actionlistener.TabChangeActionListener;
 import com.ace.capitalflows.constant.Constant;
 
 /**
@@ -32,6 +33,7 @@ public class FrameCenterPanel extends JPanel {
         nianYdCenterPanel = new NianYdCenterPanel();
         tabs.add(Constant.TAB_NIAN_YD, nianYdCenterPanel);
         this.add(tabs, BorderLayout.CENTER);
+        tabs.addChangeListener(new TabChangeActionListener());
     }
 
     public String getCurTabName() {
