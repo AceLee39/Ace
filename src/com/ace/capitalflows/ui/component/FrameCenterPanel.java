@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.ace.capitalflows.constant.Constant;
+
 /**
  * @author Administrator
  *
@@ -19,16 +21,16 @@ import javax.swing.JTabbedPane;
 public class FrameCenterPanel extends JPanel {
     private final JTabbedPane tabs;
     private final NianJdCenterPanel nianJdCenterPanel;
-	private final NianYdCenterPanel nianYdCenterPanel;
+    private final NianYdCenterPanel nianYdCenterPanel;
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
         this.add(CustComboBoxPanel.getInstance(), BorderLayout.NORTH);
         tabs = new JTabbedPane();
         nianJdCenterPanel = new NianJdCenterPanel();
         CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
-        tabs.add("NianJd", nianJdCenterPanel);
-		nianYdCenterPanel = new NianYdCenterPanel();
-        tabs.add("NianYd", nianYdCenterPanel);
+        tabs.add(Constant.TAB_NIAN_JD, nianJdCenterPanel);
+        nianYdCenterPanel = new NianYdCenterPanel();
+        tabs.add(Constant.TAB_NIAN_YD, nianYdCenterPanel);
         this.add(tabs, BorderLayout.CENTER);
     }
 

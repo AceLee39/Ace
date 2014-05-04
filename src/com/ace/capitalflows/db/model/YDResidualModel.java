@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import com.ace.capitalflows.db.DaoFactory;
 import com.ace.capitalflows.entity.YDResidual;
 import com.ace.capitalflows.utils.DBUtils;
 
@@ -22,16 +21,41 @@ import com.ace.capitalflows.utils.DBUtils;
  * @author Administrator
  *
  */
-public class YDResidualModel {
+public class YDResidualModel extends AbstractDaoModel{
 
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#batchInsert(java.util.List)
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Override
+    public void batchInsert(final List ydResiduals) {
+        batchInsertYDResidual(ydResiduals);
+    }
 
-    public static void batchInsertYDResidual(final List<YDResidual> ydResiduals) {
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#findAll()
+     */
+    @SuppressWarnings("rawtypes")
+    @Override
+    public List findAll() {
+        return findYDResiduals();
+    }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#findComboBoxData()
+     */
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Vector findComboBoxData() {
+        return findAllNianYd();
+    }
+
+    protected void batchInsertYDResidual(final List<YDResidual> ydResiduals) {
         Connection conn = null;
         PreparedStatement ps = null;
-        final String sql = "INSERT INTO SOCF_YD_RESIDUAL(ID,NIAN_YD,S,FDI,FBT) " +
-                "VALUES(null,?,?,?,?)";
+        final String sql = getbatchInsertSql();
         try {
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             conn.setAutoCommit(false);
             ps = conn.prepareStatement(sql);
             for (final YDResidual ydResidual : ydResiduals) {
@@ -60,14 +84,14 @@ public class YDResidualModel {
         }
     }
 
-    public static Vector<String> findAllNianYd() {
+    protected Vector<String> findAllNianYd() {
         final Vector<String> allNianYd = new Vector<String>();
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             final String sql = "SELECT NIAN_YD FROM SOCF_YD_RESIDUAL";
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -92,14 +116,14 @@ public class YDResidualModel {
         return allNianYd;
     }
 
-    public static List<YDResidual> findYDResiduals() {
+    protected List<YDResidual> findYDResiduals() {
         final List<YDResidual> ydResiduals = new ArrayList<YDResidual>();
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             final String sql = "SELECT * FROM SOCF_YD_RESIDUAL";
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -133,11 +157,12 @@ public class YDResidualModel {
 
 
 
-    public static void deleteAll() {
+    @Override
+    public void deleteAll() {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             final String sql = "DELETE FROM SOCF_YD_RESIDUAL WHERE NIAN_YD IS NOT NULL";
             ps = conn.prepareStatement(sql);
             ps.executeUpdate();

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import com.ace.capitalflows.entity.Cuddington;
 import com.ace.capitalflows.utils.DBUtils;
@@ -162,6 +163,16 @@ public class CuddingtonModel extends AbstractDaoModel{
             }
         }
         return cuddingtons;
+    }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.DaoModel#findComboBoxData()
+     */
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Vector findComboBoxData() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

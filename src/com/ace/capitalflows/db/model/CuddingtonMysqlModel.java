@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Administrator
  *
  */
-public class CuddingtonMysqlModel extends AbstractDaoModel{
+public class CuddingtonMysqlModel extends CuddingtonModel{
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.db.model.AbstractDaoModel#getConn()

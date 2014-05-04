@@ -36,7 +36,7 @@ create sequence SEQ_CUDDINGTON;
 
 create table SOCF_RESIDUAL(
     ID int primary key,
-    NIAN_JD varchar(20) unique,
+    NIAN_JD varchar2(20) unique,
     S number(30,4),
     L1 number(30,4),
     L2 number(30,4),
@@ -59,13 +59,21 @@ create table SOCF_RESIDUAL(
 create sequence SEQ_RESIDUAL;
 
 create table t_user(
-    id int primary key auto_increment,
-    username varchar(20) unique,
-    password varchar(20)
+    id int primary key,
+    username varchar2(20) unique,
+    password varchar2(20)
 );
 
 
+create table SOCF_YD_RESIDUAL (
+    id int primary key,
+    nian_yd varchar2(20) not null unique,
+    s number(30,4),
+    fdi number(30,4),
+    fbt number(30,4)
+);
 
+create sequence SEQ_YD_RESIDUAL;
 
 
 

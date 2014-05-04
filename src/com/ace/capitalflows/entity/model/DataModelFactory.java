@@ -6,7 +6,7 @@
 // ============================================================================
 package com.ace.capitalflows.entity.model;
 
-import org.apache.commons.lang.StringUtils;
+import com.ace.capitalflows.constant.Constant;
 
 
 
@@ -43,9 +43,6 @@ public class DataModelFactory {
     }
 
     public DataModel getDataModelByTabName(final String tabName) {
-        if (StringUtils.equals("NianJd", tabName)) {
-            return getDataModel(NianJdDataModel.class.getName());
-        }
-        return getDataModel(NianJdDataModel.class.getName());
+        return getDataModel(String.format(Constant.DATA_MODEL_PATH, tabName));
     }
 }

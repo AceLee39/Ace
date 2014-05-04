@@ -106,9 +106,9 @@ public class CustComboBoxPanel extends JPanel {
      *
      */
     private void addIntoLayout() {
-        this.add(new JLabel("ä»?, JLabel.CENTER));
+        this.add(new JLabel("ä»Ž", JLabel.CENTER));
         this.add(fromCombobox);
-        this.add(new JLabel("åˆ?, JLabel.CENTER));
+        this.add(new JLabel("åˆ°", JLabel.CENTER));
         this.add(toCombobox);
     }
 

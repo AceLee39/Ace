@@ -7,8 +7,10 @@
 package com.ace.capitalflows.entity.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
+import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.db.model.CuddingtonOracleModel;
 import com.ace.capitalflows.db.model.DaoModel;
 import com.ace.capitalflows.db.model.DaoModelFactory;
@@ -63,9 +65,9 @@ public class NianJdDataModel extends AbstractDataModel {
      */
     @SuppressWarnings({"rawtypes"})
     @Override
-    public void batchInsert(final List... lists) {
-        residualModel.batchInsert(lists[0]);
-        cuddingtonModel.batchInsert(lists[1]);
+    public void batchInsert(final Map<String, Object> result) {
+        residualModel.batchInsert((List) result.get(Constant.PTY_RESIDUALS));
+        cuddingtonModel.batchInsert((List) result.get(Constant.PTY_CUDDINGTONS));
     }
 
     /* (non-Javadoc)
