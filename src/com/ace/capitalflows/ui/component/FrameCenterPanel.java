@@ -19,7 +19,7 @@ import javax.swing.JTabbedPane;
 public class FrameCenterPanel extends JPanel {
     private final JTabbedPane tabs;
     private final NianJdCenterPanel nianJdCenterPanel;
-
+	private final NianYdCenterPanel nianYdCenterPanel;
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
         this.add(CustComboBoxPanel.getInstance(), BorderLayout.NORTH);
@@ -27,6 +27,8 @@ public class FrameCenterPanel extends JPanel {
         nianJdCenterPanel = new NianJdCenterPanel();
         CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
         tabs.add("NianJd", nianJdCenterPanel);
+		nianYdCenterPanel = new NianYdCenterPanel();
+        tabs.add("NianYd", nianYdCenterPanel);
         this.add(tabs, BorderLayout.CENTER);
     }
 
@@ -43,5 +45,12 @@ public class FrameCenterPanel extends JPanel {
      */
     public NianJdCenterPanel getNianJdCenterPanel() {
         return nianJdCenterPanel;
+    }
+
+    /**
+     * @return the nianJdCenterPanel
+     */
+    public NianYdCenterPanel getNianYdCenterPanel() {
+        return nianYdCenterPanel;
     }
 }

@@ -31,6 +31,7 @@ public class CustComboBoxPanel extends JPanel {
     private Vector<String> toComboBoxData;
     private Vector<String> fromComboBoxData;
     private boolean isNeedReset = Boolean.TRUE;
+    private static CustComboBoxPanel instance;
 
     private CustComboBoxPanel() {
         this.setLayout(new GridLayout(1, 5));
@@ -45,7 +46,10 @@ public class CustComboBoxPanel extends JPanel {
     }
 
     public static CustComboBoxPanel getInstance() {
-        return CustComboBoxPanelInstance.instance;
+        if(instance == null) {
+            instance = CustComboBoxPanelInstance.instance;
+        }
+        return instance;
     }
 
     /**
@@ -102,9 +106,9 @@ public class CustComboBoxPanel extends JPanel {
      *
      */
     private void addIntoLayout() {
-        this.add(new JLabel("ä»Ž", JLabel.CENTER));
+        this.add(new JLabel("ä»?, JLabel.CENTER));
         this.add(fromCombobox);
-        this.add(new JLabel("åˆ°", JLabel.CENTER));
+        this.add(new JLabel("åˆ?, JLabel.CENTER));
         this.add(toCombobox);
     }
 
