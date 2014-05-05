@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -51,10 +52,7 @@ public abstract class AbstractActionListener implements ActionListener {
      *
      */
     protected void updatedFrame() {
-        if (StringUtils.equals(params.get(ImportDataActionContext.KEY_CUR_TAB_NAME).toString(),
-                MainFrame.getInstance().getCurTabName())) {
-            repaintFrame();
-        }
+        repaintFrame();
     }
 
     /**
@@ -67,11 +65,14 @@ public abstract class AbstractActionListener implements ActionListener {
         updateParams.put(BaseActionContext.KEY_CUR_TAB_NAME, tabName);
         UIActionExecute.execute("UpdateDataActionListener", updateParams);
         final String[][] dataArray = (String[][]) updateParams.get(UpdateDataActionContext.KEY_TABLE_DATA);
-        MainFrame.getInstance().getCurTabPanel().setTableModel(dataArray);
         final List<String> comboBoxDataList = (List<String>) updateParams.get(UpdateDataActionContext.KEY_COMBOBOX_DATA);
-        CustComboBoxPanel.getInstance().setNeedReset(Boolean.TRUE);
-        CustComboBoxPanel.getInstance().updateData(comboBoxDataList);
-        CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
+        MainFrame.getInstance().getCenterPanel(tabName).setTableModel(dataArray);
+        MainFrame.getInstance().getCenterPanel(tabName).setComboBoxData(new Vector<String>(comboBoxDataList));
+        if (StringUtils.equals(tabName, MainFrame.getInstance().getCurTabName())) {
+            CustComboBoxPanel.getInstance().setNeedReset(Boolean.TRUE);
+            CustComboBoxPanel.getInstance().updateData(comboBoxDataList);
+            CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
+        }
         MainFrame.getInstance().repaint();
     }
 

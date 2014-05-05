@@ -28,7 +28,7 @@ public class YDResidualMysqlModel extends YDResidualModel{
      */
     @Override
     protected String getbatchInsertSql() {
-        return "INSERT INTO SOCF_YD_RESIDUAL(ID,NIAN_YD,S,FDI,FBT) " +
+        return "INSERT INTO SOCF_YD_RESIDUAL(ID,nian_yd,S,FDI,FBT) " +
                 "VALUES(null,?,?,?,?)";
     }
 

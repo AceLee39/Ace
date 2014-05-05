@@ -13,15 +13,15 @@ import java.util.Vector;
 import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.db.model.DaoModel;
 import com.ace.capitalflows.db.model.DaoModelFactory;
-import com.ace.capitalflows.db.model.YDResidualOracleModel;
 import com.ace.capitalflows.entity.YDResidual;
+import com.ace.capitalflows.utils.PropertiesUtil;
 
 /**
  * @author Administrator
  *
  */
 public class NianYdDataModel extends AbstractDataModel {
-    DaoModel ydResidualModel = DaoModelFactory.getInstance().getDaoModel(YDResidualOracleModel.class.getName());
+    DaoModel ydResidualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("YDResidualModel"));
 
 
     /* (non-Javadoc)

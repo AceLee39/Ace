@@ -51,7 +51,7 @@ public class MainFrame extends BaseFrame {
         //init menuBar
         menuBar = new JMenuBar();
         final JMenu menu = new JMenu("File");
-        importData = new JMenuItem("Import Nian JD Data");
+        importData = new JMenuItem("Import Data");
         menu.add(importData);
 
         showChar = new JMenuItem("Show Chart");
@@ -111,5 +111,9 @@ public class MainFrame extends BaseFrame {
 
     public AbstractCenterPanel getCurTabPanel() {
         return frameCenterPanel.getCurTabPanel();
+    }
+
+    public AbstractCenterPanel getCenterPanel(final String panelName) {
+        return frameCenterPanel.getCenterPanel(panelName);
     }
 }

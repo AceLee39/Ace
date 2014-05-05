@@ -21,7 +21,8 @@ public class OracleDaoFactory {
 
     static {
         try {
-            Class.forName(PropertiesUtil.getDBOracleInstance().getString("DRIVER"));
+            PropertiesUtil.initDBOracleInstance();
+            Class.forName(PropertiesUtil.getString("DRIVER"));
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -32,9 +33,9 @@ public class OracleDaoFactory {
     public Connection getConn() throws SQLException {
         Connection conn = localConn.get();
         if(null == conn || conn.isClosed()) {
-            conn = DriverManager.getConnection(PropertiesUtil.getDBOracleInstance().getString("URL"),
-                    PropertiesUtil.getDBOracleInstance().getString("USERNAME"),
-                    PropertiesUtil.getDBOracleInstance().getString("PASSWORD"));
+            conn = DriverManager.getConnection(PropertiesUtil.getString("URL"),
+                    PropertiesUtil.getString("USERNAME"),
+                    PropertiesUtil.getString("PASSWORD"));
             localConn.set(conn);
         }
         return conn;

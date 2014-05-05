@@ -16,11 +16,10 @@ import java.util.Properties;
  *
  */
 public class PropertiesUtil {
-    private final Properties properties;
+    private static Properties properties = new Properties();
     private static final String DB_SETTING = "setting/DBSetting.properties";
     private static final String DB_ORACLE_SETTING = "setting/DBOracleSetting.properties";
     private PropertiesUtil(final String filePath) {
-        properties = new Properties();
         try {
             final InputStream is = new FileInputStream(filePath);
             properties.load(is);
@@ -30,15 +29,15 @@ public class PropertiesUtil {
         }
     }
 
-    public static PropertiesUtil getDBInstance() {
+    public static PropertiesUtil initDBInstance() {
         return DBPropertiesInstance.instance;
     }
 
-    public static PropertiesUtil getDBOracleInstance() {
+    public static PropertiesUtil initDBOracleInstance() {
         return DBOraclePropertiesInstance.instance;
     }
 
-    public String getString(final String key) {
+    public static String getString(final String key) {
         return properties.getProperty(key);
     }
 

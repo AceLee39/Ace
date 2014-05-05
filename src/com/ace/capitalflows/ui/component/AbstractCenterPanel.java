@@ -21,7 +21,7 @@ import com.ace.capitalflows.entity.model.DataModel;
 public abstract class AbstractCenterPanel extends JPanel {
     protected final DataModel dataModel;
     protected final CustTablePanel tablePanel;
-    protected final Vector<String> comboBoxData;
+    protected Vector<String> comboBoxData;
 
     public AbstractCenterPanel() {
         dataModel = initDataModel();
@@ -47,8 +47,16 @@ public abstract class AbstractCenterPanel extends JPanel {
         tablePanel.setTableModel(tableData);
     }
 
+    public void setComboBoxData(final Vector<String> comboBoxData) {
+        this.comboBoxData = comboBoxData;
+    }
+
     public String[][] getTableData() {
         return tablePanel.getTableData();
+    }
+
+    public String[][] getCurTableData() {
+        return tablePanel.getCurTableData();
     }
 
     public Vector<String> getComboBoxData() {

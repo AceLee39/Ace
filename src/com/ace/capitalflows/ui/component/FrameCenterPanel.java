@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ace.capitalflows.actionlistener.TabChangeActionListener;
 import com.ace.capitalflows.constant.Constant;
 
@@ -56,5 +58,18 @@ public class FrameCenterPanel extends JPanel {
      */
     public NianYdCenterPanel getNianYdCenterPanel() {
         return nianYdCenterPanel;
+    }
+
+    /**
+     * @return the nianJdCenterPanel
+     */
+    public AbstractCenterPanel getCenterPanel(final String panelName) {
+        if (StringUtils.equals(panelName, Constant.TAB_NIAN_YD)) {
+            return nianYdCenterPanel;
+        }
+        if (StringUtils.equals(panelName, Constant.TAB_NIAN_JD)) {
+            return nianJdCenterPanel;
+        }
+        return null;
     }
 }

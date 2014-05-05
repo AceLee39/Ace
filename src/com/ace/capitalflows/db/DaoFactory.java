@@ -21,7 +21,8 @@ public class DaoFactory {
 
     static {
         try {
-            Class.forName(PropertiesUtil.getDBInstance().getString("DRIVER"));
+            PropertiesUtil.initDBInstance();
+            Class.forName(PropertiesUtil.getString("DRIVER"));
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -32,9 +33,9 @@ public class DaoFactory {
     public Connection getConn() throws SQLException {
         Connection conn = localConn.get();
         if(null == conn || conn.isClosed()) {
-            conn = DriverManager.getConnection(PropertiesUtil.getDBInstance().getString("URL"),
-                    PropertiesUtil.getDBInstance().getString("USERNAME"),
-                    PropertiesUtil.getDBInstance().getString("PASSWORD"));
+            conn = DriverManager.getConnection(PropertiesUtil.getString("URL"),
+                    PropertiesUtil.getString("USERNAME"),
+                    PropertiesUtil.getString("PASSWORD"));
             localConn.set(conn);
         }
         return conn;
