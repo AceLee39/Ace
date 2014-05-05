@@ -20,11 +20,12 @@ import com.ace.capitalflows.entity.model.DataModel;
 @SuppressWarnings("serial")
 public abstract class AbstractCenterPanel extends JPanel {
     protected final DataModel dataModel;
-    final CustTablePanel tablePanel;
+    protected final CustTablePanel tablePanel;
+    protected final Vector<String> comboBoxData;
 
     public AbstractCenterPanel() {
         dataModel = initDataModel();
-        final Vector<String> comboBoxData = initComboBoxData();
+        comboBoxData = initComboBoxData();
         final CustComboBoxPanel comboBoxPanel = CustComboBoxPanel.getInstance();
         comboBoxPanel.setComboBoxData(comboBoxData);
         final String[][] tableData = initTableData();
@@ -49,4 +50,9 @@ public abstract class AbstractCenterPanel extends JPanel {
     public String[][] getTableData() {
         return tablePanel.getTableData();
     }
+
+    public Vector<String> getComboBoxData() {
+        return comboBoxData;
+    }
+
 }
