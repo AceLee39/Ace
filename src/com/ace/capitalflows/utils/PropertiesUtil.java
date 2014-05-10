@@ -19,6 +19,8 @@ public class PropertiesUtil {
     private static Properties properties = new Properties();
     private static final String DB_SETTING = "setting/DBSetting.properties";
     private static final String DB_ORACLE_SETTING = "setting/DBOracleSetting.properties";
+    private static PropertiesUtil instance = null;
+
     private PropertiesUtil(final String filePath) {
         try {
             final InputStream is = new FileInputStream(filePath);
@@ -30,11 +32,17 @@ public class PropertiesUtil {
     }
 
     public static PropertiesUtil initDBInstance() {
-        return DBPropertiesInstance.instance;
+        if (instance == null) {
+            instance = DBPropertiesInstance.instance;
+        }
+        return instance;
     }
 
     public static PropertiesUtil initDBOracleInstance() {
-        return DBOraclePropertiesInstance.instance;
+        if (instance == null) {
+            instance = DBOraclePropertiesInstance.instance;
+        }
+        return instance;
     }
 
     public static String getString(final String key) {

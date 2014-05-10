@@ -21,8 +21,12 @@ import com.ace.capitalflows.utils.PropertiesUtil;
  *
  */
 public class NianYdDataModel extends AbstractDataModel {
-    DaoModel ydResidualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("YDResidualModel"));
+    DaoModel ydResidualModel = null;
 
+
+    public NianYdDataModel() {
+        ydResidualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("YDResidualModel"));
+    }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.AbstractDataModel#getTableData()

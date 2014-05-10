@@ -11,20 +11,25 @@ import java.util.Map;
 import java.util.Vector;
 
 import com.ace.capitalflows.constant.Constant;
-import com.ace.capitalflows.db.model.CuddingtonMysqlModel;
 import com.ace.capitalflows.db.model.DaoModel;
 import com.ace.capitalflows.db.model.DaoModelFactory;
-import com.ace.capitalflows.db.model.ResidualMysqllModel;
 import com.ace.capitalflows.entity.Cuddington;
 import com.ace.capitalflows.entity.Residual;
+import com.ace.capitalflows.utils.PropertiesUtil;
 
 /**
  * @author Administrator
  *
  */
 public class NianJdDataModel extends AbstractDataModel {
-    DaoModel cuddingtonModel = DaoModelFactory.getInstance().getDaoModel(CuddingtonMysqlModel.class.getName());
-    DaoModel residualModel = DaoModelFactory.getInstance().getDaoModel(ResidualMysqllModel.class.getName());
+    DaoModel cuddingtonModel = null;
+    DaoModel residualModel = null;
+
+
+    public NianJdDataModel() {
+        cuddingtonModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("CuddingtonModel"));
+        residualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("ResidualModel"));
+    }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.AbstractDataModel#getTableData()
