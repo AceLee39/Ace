@@ -9,7 +9,7 @@ package com.ace.capitalflows.actionlistener;
 import java.awt.event.ActionEvent;
 
 import com.ace.capitalflows.ui.component.CustComboBoxPanel;
-import com.ace.capitalflows.ui.component.CustTablePanel;
+import com.ace.capitalflows.ui.frame.MainFrame;
 import com.ace.capitalflows.utils.DataUtils;
 
 /**
@@ -30,8 +30,8 @@ public class ComboBoxActionListener extends AbstractActionListener{
     }
 
     private void updateTable(final String from, final String to) {
-        final String[][] tableData = CustTablePanel.getInstance().getTableData();
+        final String[][] tableData = MainFrame.getInstance().getCurTabPanel().getTableData();
         final String[][] updateData = DataUtils.updataTableData(tableData, from, to);
-        CustTablePanel.getInstance().setTableModel(updateData);
+        MainFrame.getInstance().getCurTabPanel().setTableModel(updateData);
     }
 }

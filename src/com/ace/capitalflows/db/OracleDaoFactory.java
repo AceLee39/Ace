@@ -16,18 +16,18 @@ import com.ace.capitalflows.utils.PropertiesUtil;
  * @author Administrator
  *
  */
-public class DaoFactory {
+public class OracleDaoFactory {
     private static ThreadLocal<Connection> localConn = new ThreadLocal<Connection>();
 
     static {
         try {
-            PropertiesUtil.initDBInstance();
+            PropertiesUtil.initDBOracleInstance();
             Class.forName(PropertiesUtil.getString("DRIVER"));
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-    private DaoFactory() {
+    private OracleDaoFactory() {
     }
 
     public Connection getConn() throws SQLException {
@@ -42,16 +42,15 @@ public class DaoFactory {
     }
 
     private static class DaoFactoryInstance {
-        private static DaoFactory instance = new DaoFactory();
+        private static OracleDaoFactory instance = new OracleDaoFactory();
     }
 
-    public static DaoFactory getInstance() {
+    public static OracleDaoFactory getInstance() {
         return DaoFactoryInstance.instance;
     }
 
     public static void main(final String[] args) throws SQLException {
-
-        System.out.println(DaoFactory.getInstance().getConn());
+        System.out.println(OracleDaoFactory.getInstance().getConn());
     }
 
 }

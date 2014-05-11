@@ -20,21 +20,20 @@ import com.ace.capitalflows.entity.model.DataModel;
 @SuppressWarnings("serial")
 public abstract class AbstractCenterPanel extends JPanel {
     protected final DataModel dataModel;
+    protected final CustTablePanel tablePanel;
+    protected Vector<String> comboBoxData;
 
     public AbstractCenterPanel() {
         dataModel = initDataModel();
-        final Vector<String> comboBoxData = initComboBoxData();
+        comboBoxData = initComboBoxData();
         final CustComboBoxPanel comboBoxPanel = CustComboBoxPanel.getInstance();
         comboBoxPanel.setComboBoxData(comboBoxData);
         final String[][] tableData = initTableData();
         final String[] tableHeaderData = initTableHeader();
-        final CustTablePanel tablePanel = CustTablePanel.getInstance();
+        tablePanel = new CustTablePanel();
         tablePanel.setTableModel(tableData, tableHeaderData);
         this.add(tablePanel, BorderLayout.CENTER);
-        setNeedInit();
     }
-
-    protected abstract void setNeedInit();
 
     protected abstract DataModel initDataModel();
 
@@ -43,5 +42,25 @@ public abstract class AbstractCenterPanel extends JPanel {
     protected abstract String[][] initTableData();
 
     protected abstract String[] initTableHeader();
+
+    public void setTableModel(final String[][] tableData) {
+        tablePanel.setTableModel(tableData);
+    }
+
+    public void setComboBoxData(final Vector<String> comboBoxData) {
+        this.comboBoxData = comboBoxData;
+    }
+
+    public String[][] getTableData() {
+        return tablePanel.getTableData();
+    }
+
+    public String[][] getCurTableData() {
+        return tablePanel.getCurTableData();
+    }
+
+    public Vector<String> getComboBoxData() {
+        return comboBoxData;
+    }
 
 }

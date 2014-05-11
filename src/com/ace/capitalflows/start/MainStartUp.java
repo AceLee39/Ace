@@ -7,6 +7,8 @@
 package com.ace.capitalflows.start;
 
 import com.ace.capitalflows.ui.frame.MainFrame;
+import com.ace.capitalflows.utils.PropertiesUtil;
+
 
 /**
  * @author Administrator
@@ -15,7 +17,10 @@ import com.ace.capitalflows.ui.frame.MainFrame;
 public class MainStartUp {
 
     public static void main(final String[] args) {
-        MainFrame.getInstance().getUpdate().doClick();
+       // System.out.println(YDResidualMysqlModel.class.getName());
+       // System.out.println(Class.forName("com.ace.capitalflows.db.model.YDResidualMysqlModel"));
+       PropertiesUtil.initDBInstance();
+      MainFrame.getInstance().getUpdate().doClick();
       //  new RegisterFrame();
     }
 }

@@ -6,7 +6,7 @@
 // ============================================================================
 package com.ace.capitalflows.entity.model;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -16,7 +16,6 @@ import java.util.Vector;
 public interface DataModel {
     String[][] getTableData();
     Vector<String> getComboBoxData();
-    @SuppressWarnings("rawtypes")
-    void batchInsert(List ...lists);
+    void batchInsert(Map<String, Object> result);
     void deleteAll();
 }

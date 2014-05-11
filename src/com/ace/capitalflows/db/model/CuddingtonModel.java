@@ -12,8 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
-import com.ace.capitalflows.db.DaoFactory;
 import com.ace.capitalflows.entity.Cuddington;
 import com.ace.capitalflows.utils.DBUtils;
 
@@ -21,15 +21,32 @@ import com.ace.capitalflows.utils.DBUtils;
  * @author Administrator
  *
  */
-public class CuddingtonModel {
+public class CuddingtonModel extends AbstractDaoModel{
 
-    public static void batchInsertCuddington(final List<Cuddington> cuddingtons) {
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#batchInsert(java.util.List)
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Override
+    public void batchInsert(final List items) {
+        batchInsertCuddington(items);
+    }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#findAll()
+     */
+    @SuppressWarnings("rawtypes")
+    @Override
+    public List findAll() {
+        return findCuddingtons();
+    }
+
+    private void batchInsertCuddington(final List<Cuddington> cuddingtons) {
         Connection conn = null;
         PreparedStatement ps = null;
-        final String sql = "INSERT INTO SOCF_CUDDINGTON(ID,NIAN_JD,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15) " +
-                "VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        final String sql = getbatchInsertSql();
         try {
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             conn.setAutoCommit(false);
             ps = conn.prepareStatement(sql);
             for (final Cuddington cuddington : cuddingtons) {
@@ -70,13 +87,12 @@ public class CuddingtonModel {
         }
     }
 
-
-
-    public static void deleteAll() {
+    @Override
+    public void deleteAll() {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            conn = DaoFactory.getInstance().getConn();
+            conn = getConn();
             final String sql = "DELETE FROM SOCF_CUDDINGTON WHERE NIAN_JD IS NOT NULL";
             ps = conn.prepareStatement(sql);
             ps.executeUpdate();
@@ -98,14 +114,14 @@ public class CuddingtonModel {
     }
 
 
-    public static List<Cuddington> findCuddingtons() {
+    private List<Cuddington> findCuddingtons() {
         final List<Cuddington> cuddingtons = new ArrayList<Cuddington>();
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "SELECT * FROM SOCF_CUDDINGTON";
-            conn = DaoFactory.getInstance().getConn();
+            final String sql = "SELECT * FROM SOCF_CUDDINGTON ORDER BY NIAN_JD";
+            conn = getConn();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -148,4 +164,15 @@ public class CuddingtonModel {
         }
         return cuddingtons;
     }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.DaoModel#findComboBoxData()
+     */
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Vector findComboBoxData() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

@@ -39,7 +39,7 @@
  *
  */
 
-package com.ace.capitalflows.ui.frame;
+package com.ace.capitalflows.ui.frame.chart;
 
 import java.awt.Color;
 import java.awt.event.WindowEvent;
@@ -70,7 +70,7 @@ import com.ace.capitalflows.utils.CommenUtils;
  * used, except that the renderer is modified to show filled shapes (as well as
  * lines) at each data point.
  */
-public class TimeSeriesChart extends ApplicationFrame {
+public class NianJdChart extends ApplicationFrame {
     private Object[][] dataArray;
     private static final long serialVersionUID = 1L;
 
@@ -95,7 +95,7 @@ public class TimeSeriesChart extends ApplicationFrame {
      *
      * @param title  the frame title.
      */
-    public TimeSeriesChart(final String title, final Object[][] dataArray) {
+    public NianJdChart(final String title, final Object[][] dataArray) {
         super(title);
         this.dataArray = dataArray;
         final ChartPanel chartPanel = (ChartPanel) createDemoPanel();
@@ -173,7 +173,7 @@ public class TimeSeriesChart extends ApplicationFrame {
         for (int i = 0; dataArray[i] != null && i < dataArray.length - 1; i++) {
             final String nianJd = (String) dataArray[i][0];
             final int year = CommenUtils.parseNian(nianJd);
-            final int jd = CommenUtils.parseJD(nianJd);
+            final int jd = CommenUtils.parseJDORYD(nianJd);
             cudd.add(new Quarter(jd, year), NumberUtils.toDouble((String) dataArray[i][1]));
             resi.add(new Quarter(jd, year), NumberUtils.toDouble((String) dataArray[i][2]));
         }

@@ -9,30 +9,27 @@ package com.ace.capitalflows.db.model;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.ace.capitalflows.db.DaoFactory;
-import com.ace.capitalflows.db.OracleDaoFactory;
 
 /**
  * @author Administrator
  *
  */
-public abstract class AbstractDaoModel implements DaoModel {
+public class CuddingtonOracleModel extends CuddingtonModel{
 
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#getConn()
+     */
+    @Override
     protected Connection getConn() throws SQLException {
-        return null;
+        return super.getOracleConn();
     }
 
-    protected Connection getMysqlConn() throws SQLException {
-        return DaoFactory.getInstance().getConn();
-    }
-
-    protected Connection getOracleConn() throws SQLException {
-        return OracleDaoFactory.getInstance().getConn();
-    }
-
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.ResidualModel#getbatchInsertSql()
+     */
+    @Override
     protected String getbatchInsertSql() {
-        return StringUtils.EMPTY;
+        return "INSERT INTO SOCF_CUDDINGTON(ID,NIAN_JD,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15) " +
+                "VALUES(SEQ_CUDDINGTON.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     }
 }

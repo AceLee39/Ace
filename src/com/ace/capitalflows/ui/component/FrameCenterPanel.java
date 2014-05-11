@@ -11,6 +11,11 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.ace.capitalflows.actionlistener.TabChangeActionListener;
+import com.ace.capitalflows.constant.Constant;
+
 /**
  * @author Administrator
  *
@@ -18,20 +23,53 @@ import javax.swing.JTabbedPane;
 @SuppressWarnings("serial")
 public class FrameCenterPanel extends JPanel {
     private final JTabbedPane tabs;
+    private final NianJdCenterPanel nianJdCenterPanel;
+    private final NianYdCenterPanel nianYdCenterPanel;
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
         this.add(CustComboBoxPanel.getInstance(), BorderLayout.NORTH);
         tabs = new JTabbedPane();
-        tabs.add("NianJd", new NianJdCenterPanel());
-        tabs.add("NianYd", new NianYdCenterPanel());
+        nianJdCenterPanel = new NianJdCenterPanel();
+        CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
+        tabs.add(Constant.TAB_NIAN_JD, nianJdCenterPanel);
+        nianYdCenterPanel = new NianYdCenterPanel();
+        tabs.add(Constant.TAB_NIAN_YD, nianYdCenterPanel);
         this.add(tabs, BorderLayout.CENTER);
-        CustTablePanel.getInstance().setNeedReInit(Boolean.TRUE);
+        tabs.addChangeListener(new TabChangeActionListener());
     }
 
     public String getCurTabName() {
         return tabs.getTitleAt(tabs.getSelectedIndex());
     }
 
+    public AbstractCenterPanel getCurTabPanel() {
+        return (AbstractCenterPanel) tabs.getSelectedComponent();
+    }
 
+    /**
+     * @return the nianJdCenterPanel
+     */
+    public NianJdCenterPanel getNianJdCenterPanel() {
+        return nianJdCenterPanel;
+    }
 
+    /**
+     * @return the nianJdCenterPanel
+     */
+    public NianYdCenterPanel getNianYdCenterPanel() {
+        return nianYdCenterPanel;
+    }
+
+    /**
+     * @return the nianJdCenterPanel
+     */
+    public AbstractCenterPanel getCenterPanel(final String panelName) {
+        if (StringUtils.equals(panelName, Constant.TAB_NIAN_YD)) {
+            return nianYdCenterPanel;
+        }
+        if (StringUtils.equals(panelName, Constant.TAB_NIAN_JD)) {
+            return nianJdCenterPanel;
+        }
+        return null;
+    }
 }

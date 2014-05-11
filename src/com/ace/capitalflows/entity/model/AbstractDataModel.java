@@ -14,6 +14,8 @@ import java.util.Vector;
  */
 public abstract class AbstractDataModel implements DataModel {
 
+    public AbstractDataModel() {}
+
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.DataModel#getTableData()
      */

@@ -9,7 +9,8 @@ package com.ace.capitalflows.action;
 import java.io.File;
 
 import com.ace.capitalflows.action.actioncontext.ImportDataActionContext;
-import com.ace.capitalflows.excel.NianJdParseExcel;
+import com.ace.capitalflows.excel.ParseExcel;
+import com.ace.capitalflows.excel.ParseExcelFactory;
 
 /**
  * @author Administrator
@@ -23,8 +24,9 @@ public class ImportDataAction extends BaseAction<ImportDataActionContext> {
     @Override
     protected void process(final ImportDataActionContext actionContext) {
         final File importFile = actionContext.getImportFile();
-        final NianJdParseExcel pe = new NianJdParseExcel();
+        final String curTabName = actionContext.getCurTabName();
+        final ParseExcel pe = ParseExcelFactory.getInstance().getParseExcel(curTabName);
         pe.parseExcel(importFile);
-        actionContext.getDataModel().batchInsert(pe.getResiduals(), pe.getCuddingtons());
+        actionContext.getDataModel().batchInsert(pe.getResult());
     }
 }

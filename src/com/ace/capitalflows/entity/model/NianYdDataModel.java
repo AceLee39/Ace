@@ -7,16 +7,26 @@
 package com.ace.capitalflows.entity.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
-import com.ace.capitalflows.db.model.YDResidualModel;
+import com.ace.capitalflows.constant.Constant;
+import com.ace.capitalflows.db.model.DaoModel;
+import com.ace.capitalflows.db.model.DaoModelFactory;
 import com.ace.capitalflows.entity.YDResidual;
+import com.ace.capitalflows.utils.PropertiesUtil;
 
 /**
  * @author Administrator
  *
  */
 public class NianYdDataModel extends AbstractDataModel {
+    DaoModel ydResidualModel = null;
+
+
+    public NianYdDataModel() {
+        ydResidualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("YDResidualModel"));
+    }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.AbstractDataModel#getTableData()
@@ -34,9 +44,10 @@ public class NianYdDataModel extends AbstractDataModel {
         return getNianYdComboBoxData();
     }
 
+    @SuppressWarnings("unchecked")
     public String[][] getNianYdData() {
-        final List<YDResidual> ydResiduals = YDResidualModel.findYDResiduals();
-        final String[][] nianYdData = new String[ydResiduals.size()][3];
+        final List<YDResidual> ydResiduals = ydResidualModel.findAll();
+        final String[][] nianYdData = new String[ydResiduals.size()][2];
         for (int i=0; i<ydResiduals.size(); i++) {
             nianYdData[i][0] = ydResiduals.get(i).getNianYD();
             nianYdData[i][1] = ydResiduals.get(i).getYdResidual();
@@ -44,17 +55,18 @@ public class NianYdDataModel extends AbstractDataModel {
         return nianYdData;
     }
 
+    @SuppressWarnings("unchecked")
     public Vector<String> getNianYdComboBoxData() {
-        return YDResidualModel.findAllNianYd();
+        return ydResidualModel.findComboBoxData();
     }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.DataModel#batchInsert(java.util.List[])
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"unchecked"})
     @Override
-    public void batchInsert(final List... lists) {
-        YDResidualModel.batchInsertYDResidual(lists[0]);
+    public void batchInsert(final Map<String, Object> result) {
+        ydResidualModel.batchInsert((List<YDResidual>) result.get(Constant.PTY_YD_RESIDUALS));
     }
 
     /* (non-Javadoc)
@@ -62,6 +74,6 @@ public class NianYdDataModel extends AbstractDataModel {
      */
     @Override
     public void deleteAll() {
-        YDResidualModel.deleteAll();
+        ydResidualModel.deleteAll();
     }
 }

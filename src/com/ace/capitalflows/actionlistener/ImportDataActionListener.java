@@ -29,7 +29,17 @@ public class ImportDataActionListener extends AbstractActionListener {
         final File file = fileChooser.getFile();
         if(file != null) {
             params.put(ImportDataActionContext.KEY_IMPORT_FILE, file);
-            params.put(ImportDataActionContext.KEY_CUR_TAB_NAME, StringUtils.substringBefore(file.getName(), ".xlsx"));
+            params.put(ImportDataActionContext.KEY_CUR_TAB_NAME, getCurTabName(file.getName()));
         }
+    }
+
+    private String getCurTabName(final String fileName) {
+        if (fileName.endsWith(".xlsx")) {
+            return StringUtils.substringBefore(fileName, ".xlsx");
+        }
+        if (fileName.endsWith(".xls")) {
+            return StringUtils.substringBefore(fileName, ".xls");
+        }
+        return null;
     }
 }

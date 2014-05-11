@@ -25,11 +25,14 @@ import com.ace.capitalflows.actionlistener.ComboBoxActionListener;
  */
 @SuppressWarnings("serial")
 public class CustComboBoxPanel extends JPanel {
-    private JComboBox<String> fromCombobox;
-    private JComboBox<String> toCombobox;
+    @SuppressWarnings("rawtypes")
+    private JComboBox fromCombobox;
+    @SuppressWarnings("rawtypes")
+    private JComboBox toCombobox;
     private Vector<String> comboBoxData = new Vector<String>();
     private Vector<String> toComboBoxData;
     private Vector<String> fromComboBoxData;
+    private boolean isNeedReset = Boolean.TRUE;
     private static CustComboBoxPanel instance;
 
     private CustComboBoxPanel() {
@@ -60,10 +63,13 @@ public class CustComboBoxPanel extends JPanel {
         reverseToData();
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void setComboBoxData(final Vector<String> comboBoxData) {
-        this.comboBoxData = comboBoxData;
-        fromCombobox.setModel(new DefaultComboBoxModel<String>(comboBoxData));
-        toCombobox.setModel(new DefaultComboBoxModel<String>(reverseData()));
+        if (isNeedReset) {
+            this.comboBoxData = comboBoxData;
+            fromCombobox.setModel(new DefaultComboBoxModel(comboBoxData));
+            toCombobox.setModel(new DefaultComboBoxModel(reverseData()));
+        }
     }
 
     /**
@@ -83,19 +89,23 @@ public class CustComboBoxPanel extends JPanel {
         toCombobox.addActionListener(new ComboBoxActionListener());
     }
 
-    public JComboBox<String> getFromCombobox() {
+    @SuppressWarnings("rawtypes")
+    public JComboBox getFromCombobox() {
         return fromCombobox;
     }
 
-    public void setFromCombobox(final JComboBox<String> fromCombobox) {
+    @SuppressWarnings("rawtypes")
+    public void setFromCombobox(final JComboBox fromCombobox) {
         this.fromCombobox = fromCombobox;
     }
 
-    public JComboBox<String> getToCombobox() {
+    @SuppressWarnings("rawtypes")
+    public JComboBox getToCombobox() {
         return toCombobox;
     }
 
-    public void setToCombobox(final JComboBox<String> toCombobox) {
+    @SuppressWarnings("rawtypes")
+    public void setToCombobox(final JComboBox toCombobox) {
         this.toCombobox = toCombobox;
     }
 
@@ -109,9 +119,10 @@ public class CustComboBoxPanel extends JPanel {
         this.add(toCombobox);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private void initComponent() {
-        fromCombobox = new JComboBox<String>(fromComboBoxData);
-        toCombobox = new JComboBox<String>(toComboBoxData);
+        fromCombobox = new JComboBox(fromComboBoxData);
+        toCombobox = new JComboBox(toComboBoxData);
     }
 
 
@@ -119,10 +130,11 @@ public class CustComboBoxPanel extends JPanel {
         comboBoxData = new Vector<String>(comboBoxDataList);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void updateData(final List<String> comboBoxDataList) {
         this.setComboBoxData(comboBoxDataList);
-        fromCombobox.setModel(new DefaultComboBoxModel<String>(comboBoxData));
-        toCombobox.setModel(new DefaultComboBoxModel<String>(reverseData()));
+        fromCombobox.setModel(new DefaultComboBoxModel(comboBoxData));
+        toCombobox.setModel(new DefaultComboBoxModel(reverseData()));
     }
 
     private Vector<String> reverseData() {
@@ -147,4 +159,17 @@ public class CustComboBoxPanel extends JPanel {
         this.fromComboBoxData = fromComboBoxData;
     }
 
+    /**
+     * @return the isNeedReset
+     */
+    public boolean isNeedReset() {
+        return isNeedReset;
+    }
+
+    /**
+     * @param isNeedReset the isNeedReset to set
+     */
+    public void setNeedReset(final boolean isNeedReset) {
+        this.isNeedReset = isNeedReset;
+    }
 }

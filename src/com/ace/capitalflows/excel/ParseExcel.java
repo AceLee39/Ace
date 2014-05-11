@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -39,7 +40,7 @@ public abstract class ParseExcel {
      */
     private void parseSheet(final XSSFSheet importSheet) {
         final int lastRowNum = importSheet.getLastRowNum();
-        for (int i = 1; i <= lastRowNum-1; i++) {
+        for (int i = 1; i < lastRowNum-1; i++) {
             final XSSFRow row = importSheet.getRow(i);
             parseRow(row);
         }
@@ -50,4 +51,7 @@ public abstract class ParseExcel {
      */
     protected void parseRow(final XSSFRow row) {
     }
+
+    public abstract Map<String, Object> getResult();
+
 }

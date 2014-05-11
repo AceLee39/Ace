@@ -50,12 +50,4 @@ public class NianYdCenterPanel extends AbstractCenterPanel {
     protected DataModel initDataModel() {
         return DataModelFactory.getInstance().getDataModel(NianYdDataModel.class.getName());
     }
-
-    /* (non-Javadoc)
-     * @see com.ace.capitalflows.ui.component.AbstractCenterPanel#setNeedInit()
-     */
-    @Override
-    protected void setNeedInit() {
-        CustTablePanel.getInstance().setNeedReInit(Boolean.FALSE);
-    }
 }

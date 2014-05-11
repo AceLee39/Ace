@@ -7,18 +7,29 @@
 package com.ace.capitalflows.entity.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
-import com.ace.capitalflows.db.model.CuddingtonModel;
-import com.ace.capitalflows.db.model.ResidualModel;
+import com.ace.capitalflows.constant.Constant;
+import com.ace.capitalflows.db.model.DaoModel;
+import com.ace.capitalflows.db.model.DaoModelFactory;
 import com.ace.capitalflows.entity.Cuddington;
 import com.ace.capitalflows.entity.Residual;
+import com.ace.capitalflows.utils.PropertiesUtil;
 
 /**
  * @author Administrator
  *
  */
 public class NianJdDataModel extends AbstractDataModel {
+    DaoModel cuddingtonModel = null;
+    DaoModel residualModel = null;
+
+
+    public NianJdDataModel() {
+        cuddingtonModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("CuddingtonModel"));
+        residualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("ResidualModel"));
+    }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.AbstractDataModel#getTableData()
@@ -36,9 +47,10 @@ public class NianJdDataModel extends AbstractDataModel {
         return getNianJdComboBoxData();
     }
 
+    @SuppressWarnings("unchecked")
     public String[][] getNianJdData() {
-        final List<Residual> residuals = ResidualModel.findResiduals();
-        final List<Cuddington> cuddingtons = CuddingtonModel.findCuddingtons();
+        final List<Residual> residuals = residualModel.findAll();
+        final List<Cuddington> cuddingtons = cuddingtonModel.findAll();
         final String[][] nianJdData = new String[residuals.size()][3];
         for (int i=0; i<residuals.size(); i++) {
             nianJdData[i][0] = residuals.get(i).getNianJD();
@@ -48,18 +60,19 @@ public class NianJdDataModel extends AbstractDataModel {
         return nianJdData;
     }
 
+    @SuppressWarnings("unchecked")
     public Vector<String> getNianJdComboBoxData() {
-        return ResidualModel.findAllNianJd();
+        return residualModel.findComboBoxData();
     }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.DataModel#batchInsert(java.util.List[])
      */
-    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SuppressWarnings({"rawtypes"})
     @Override
-    public void batchInsert(final List... lists) {
-        ResidualModel.batchInsertResidual(lists[0]);
-        CuddingtonModel.batchInsertCuddington(lists[1]);
+    public void batchInsert(final Map<String, Object> result) {
+        residualModel.batchInsert((List) result.get(Constant.PTY_RESIDUALS));
+        cuddingtonModel.batchInsert((List) result.get(Constant.PTY_CUDDINGTONS));
     }
 
     /* (non-Javadoc)
@@ -67,8 +80,8 @@ public class NianJdDataModel extends AbstractDataModel {
      */
     @Override
     public void deleteAll() {
-        ResidualModel.deleteAll();
-        CuddingtonModel.deleteAll();
+        residualModel.deleteAll();
+        cuddingtonModel.deleteAll();
     }
 
 }

@@ -9,30 +9,27 @@ package com.ace.capitalflows.db.model;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.ace.capitalflows.db.DaoFactory;
-import com.ace.capitalflows.db.OracleDaoFactory;
-
 /**
  * @author Administrator
  *
  */
-public abstract class AbstractDaoModel implements DaoModel {
+public class YDResidualMysqlModel extends YDResidualModel{
 
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#getConn()
+     */
+    @Override
     protected Connection getConn() throws SQLException {
-        return null;
+        return getMysqlConn();
     }
 
-    protected Connection getMysqlConn() throws SQLException {
-        return DaoFactory.getInstance().getConn();
-    }
-
-    protected Connection getOracleConn() throws SQLException {
-        return OracleDaoFactory.getInstance().getConn();
-    }
-
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.db.model.AbstractDaoModel#getbatchInsertSql()
+     */
+    @Override
     protected String getbatchInsertSql() {
-        return StringUtils.EMPTY;
+        return "INSERT INTO SOCF_YD_RESIDUAL(ID,nian_yd,S,FDI,FBT) " +
+                "VALUES(null,?,?,?,?)";
     }
+
 }
