@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ace.capitalflows.entity.User;
 import com.ace.capitalflows.entity.UserControl;
 
@@ -44,6 +46,7 @@ public class RegisterFrame extends JFrame{
     private void init() {
         this.setTitle("注册");
         this.setSize(400, 200);
+        this.setLocation(400, 200);
         this.setContentPane(createPane());
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,8 +67,15 @@ public class RegisterFrame extends JFrame{
             @Override
             public void actionPerformed(final ActionEvent paramActionEvent) {
                 final User u = new User();
-                u.setUsername(username.getText());
-                u.setPassword(String.valueOf(password.getPassword()));
+                final String userName = username.getText();
+                final String passwordVal = String.valueOf(password.getPassword());
+                if (StringUtils.isBlank(userName) || StringUtils.isBlank(passwordVal)) {
+                    usernameMsg.setText("用户名密码不可以为空");
+                    repasswordMsg.setText("用户名密码不可以为空");
+                    return;
+                }
+                u.setUsername(userName);
+                u.setPassword(passwordVal);
                 final UserControl uc = new UserControl();
                 uc.setRepassword(String.valueOf(repassword.getPassword()));
                 final String s = uc.checkUser(u);

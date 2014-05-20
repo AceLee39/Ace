@@ -36,6 +36,7 @@ public class LoginFrame extends JFrame {
     private void init() {
         this.setTitle("登录");
         this.setSize(400, 200);
+        this.setLocation(400, 200);
         this.setContentPane(createPane());
         this.setVisible(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,6 +72,17 @@ public class LoginFrame extends JFrame {
             }
         });
         panel.add(login);
+
+        final JButton register = new JButton("注册");
+        register.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent paramActionEvent) {
+                LoginFrame.this.setVisible(false);
+                final RegisterFrame registerFrame = new RegisterFrame();
+                registerFrame.setVisible(true);
+            }
+        });
+        panel.add(register);
         return panel;
     }
 
