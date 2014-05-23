@@ -20,7 +20,7 @@ public class MainStartUp {
        // System.out.println(YDResidualMysqlModel.class.getName());
        // System.out.println(Class.forName("com.ace.capitalflows.db.model.YDResidualMysqlModel"));
        //PropertiesUtil.initDBInstance();
-       PropertiesUtil.initDBOracleInstance();
+      PropertiesUtil.initDBOracleInstance();
       MainFrame.getInstance().getUpdate().doClick();
       //  new RegisterFrame();
     }

@@ -62,6 +62,9 @@ public abstract class AbstractActionListener implements ActionListener {
     private void repaintFrame() {
         final Map<String, Object> updateParams = new HashMap<String, Object>();
         final String tabName = (String) params.get(ImportDataActionContext.KEY_CUR_TAB_NAME);
+        if(StringUtils.isBlank(tabName)) {
+            return;
+        }
         updateParams.put(BaseActionContext.KEY_CUR_TAB_NAME, tabName);
         UIActionExecute.execute("UpdateDataActionListener", updateParams);
         final String[][] dataArray = (String[][]) updateParams.get(UpdateDataActionContext.KEY_TABLE_DATA);

@@ -24,9 +24,12 @@ public class ImportDataUIAction extends AbstractUIAction {
     @Override
     protected void process(final Map<String, Object> params) {
         final ImportDataActionContext importData = new ImportDataActionContext();
-        importData.setImportFile((File) params.get(ImportDataActionContext.KEY_IMPORT_FILE));
+        final File file = (File) params.get(ImportDataActionContext.KEY_IMPORT_FILE);
+        if (file == null) {
+            return;
+        }
+        importData.setImportFile(file);
         importData.setCurTabName(params.get(ImportDataActionContext.KEY_CUR_TAB_NAME).toString());
         ActionDispatch.execute(importData);
     }
-
 }
