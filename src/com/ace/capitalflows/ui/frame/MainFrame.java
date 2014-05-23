@@ -70,7 +70,7 @@ public class MainFrame extends BaseFrame {
     }
 
     private static class MainFrameInstance {
-        private static MainFrame instance = new MainFrame("资本流动规模");
+        private static MainFrame instance = new MainFrame("短期资本流动规模测试系统");
     }
 
     public static MainFrame getInstance() {
