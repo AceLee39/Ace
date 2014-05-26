@@ -21,6 +21,7 @@ public abstract class BaseFrame extends JFrame{
     public BaseFrame(final String title) {
         this.container = this.getContentPane();
         initComponent();
+        addButtonActionListener();
         addIntoContainer();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(title);
@@ -33,4 +34,6 @@ public abstract class BaseFrame extends JFrame{
     protected Container getCurContainer() {
         return container;
     }
+
+    protected void addButtonActionListener(){}
 }
