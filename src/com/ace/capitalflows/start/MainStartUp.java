@@ -19,7 +19,8 @@ public class MainStartUp {
     public static void main(final String[] args) {
        // System.out.println(YDResidualMysqlModel.class.getName());
        // System.out.println(Class.forName("com.ace.capitalflows.db.model.YDResidualMysqlModel"));
-       PropertiesUtil.initDBInstance();
+       //PropertiesUtil.initDBInstance();
+      PropertiesUtil.initDBOracleInstance();
       MainFrame.getInstance().getUpdate().doClick();
       //  new RegisterFrame();
     }

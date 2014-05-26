@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @author Administrator
  *
  */
-public class ResidualOraclelModel extends ResidualModel{
+public class ResidualOracleModel extends ResidualModel{
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.db.model.AbstractDaoModel#getConn()
