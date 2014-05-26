@@ -28,11 +28,7 @@ create table SOCF_CUDDINGTON (
     S14 number(30,4),
     S15 number(30,4)
 );
-
 create sequence SEQ_CUDDINGTON;
-
-
-#间接法（Residual method）：
 
 create table SOCF_RESIDUAL(
     ID int primary key,
@@ -55,8 +51,15 @@ create table SOCF_RESIDUAL(
     L15 number(30,4),
     L16 number(30,4)
 );
-
 create sequence SEQ_RESIDUAL;
+
+create table SOCF_JD_TABLE (
+    id int primary key,
+    nian_jd varchar2(20) not null unique,
+    jd_cuddington number(30,4),
+    jd_residual number(30,4),
+);
+create sequence SEQ_JD_TABLE;
 
 create table t_user(
     id int primary key,
@@ -72,8 +75,16 @@ create table SOCF_YD_RESIDUAL (
     fdi number(30,4),
     fbt number(30,4)
 );
-
 create sequence SEQ_YD_RESIDUAL;
+
+create table SOCF_YD_TABLE (
+    id int primary key,
+    nian_yd varchar2(20) not null unique,
+    YD_RESIDUAL number(30,4),
+);
+create sequence SEQ_YD_TABLE;
+
+
 
 
 
