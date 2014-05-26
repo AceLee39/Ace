@@ -35,5 +35,5 @@ public abstract class BaseFrame extends JFrame{
         return container;
     }
 
-    protected abstract void addButtonActionListener();
+    protected void addButtonActionListener(){}
 }
