@@ -30,6 +30,7 @@ public abstract class AbstractCenterPanel extends JPanel {
         dataModel = initDataModel();
         comboBoxData = initComboBoxData();
         comboBoxPanel = new CustComboBoxPanel(comboBoxData);
+        this.setLayout(new BorderLayout());
         this.add(comboBoxPanel, BorderLayout.NORTH);
         final String[][] tableData = initTableData();
         final String[] tableHeaderData = initTableHeader();

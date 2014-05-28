@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JMenuItem;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ace.capitalflows.ui.component.AbstractCenterPanel;
 import com.ace.capitalflows.ui.component.CustComboBoxPanel;
 import com.ace.capitalflows.ui.component.CustMenuBar;
@@ -24,6 +26,7 @@ import com.ace.capitalflows.ui.component.FrameCenterPanel;
 public class MainFrame extends BaseFrame {
     private CustMenuBar menuBar;
     private FrameCenterPanel frameCenterPanel;
+    private static MainFrame instance;
 
     /**
      * @param title
@@ -51,7 +54,10 @@ public class MainFrame extends BaseFrame {
     }
 
     public static MainFrame getInstance() {
-        return MainFrameInstance.instance;
+        if(instance == null) {
+            instance = MainFrameInstance.instance;
+        }
+        return instance;
     }
 
     /* (non-Javadoc)
@@ -82,5 +88,10 @@ public class MainFrame extends BaseFrame {
 
     public void setCenterPanel(final AbstractCenterPanel centerPanel) {
         frameCenterPanel.setCenterPanel(centerPanel);
+    }
+
+    public boolean isCurCenterPanel(final String name) {
+        final boolean isCurCenterPanel = (name == null? true : StringUtils.equals(name, getCenterPanelName()));
+        return isCurCenterPanel;
     }
 }

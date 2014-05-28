@@ -12,6 +12,7 @@ package com.ace.capitalflows.constant;
  *
  */
 public interface UILabelConstant {
+
     String UI_LABEL_BASEDATA = "基础数据查询";
     String UI_LABEL_YEARDATA = "年度基础数据查询";
     String UI_LABEL_QUARTERDATA = "季度基础数据查询";

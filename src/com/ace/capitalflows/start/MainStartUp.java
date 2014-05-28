@@ -6,6 +6,8 @@
 // ============================================================================
 package com.ace.capitalflows.start;
 
+import javax.swing.SwingUtilities;
+
 import com.ace.capitalflows.ui.frame.MainFrame;
 import com.ace.capitalflows.utils.PropertiesUtil;
 
@@ -21,7 +23,12 @@ public class MainStartUp {
        // System.out.println(Class.forName("com.ace.capitalflows.db.model.YDResidualMysqlModel"));
        //PropertiesUtil.initDBInstance();
       PropertiesUtil.initDBOracleInstance();
-      MainFrame.getInstance().getUpdate().doClick();
+      SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            MainFrame.getInstance().getUpdate().doClick();
+        }
+    });
       //  new RegisterFrame();
     }
 }

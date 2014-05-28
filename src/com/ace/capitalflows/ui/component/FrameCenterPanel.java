@@ -8,6 +8,7 @@ package com.ace.capitalflows.ui.component;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -17,9 +18,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class FrameCenterPanel extends JPanel {
     private AbstractCenterPanel centerPanel;
+    private JLabel centerPanelName;
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
         centerPanel = initDefaultCenterPanel();
+        centerPanelName = new JLabel(centerPanel.getCenterPanelName());
+        this.add(centerPanelName, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
     }
 
@@ -45,9 +49,15 @@ public class FrameCenterPanel extends JPanel {
      * @param centerPanel the centerPanel to set
      */
     public void setCenterPanel(final AbstractCenterPanel centerPanel) {
-        this.centerPanel = centerPanel;
-        this.add(centerPanel, BorderLayout.CENTER);
+        FrameCenterPanel.this.remove(FrameCenterPanel.this.centerPanel);
+        FrameCenterPanel.this.remove(FrameCenterPanel.this.centerPanelName);
+        FrameCenterPanel.this.invalidate();
+        FrameCenterPanel.this.updateUI();
+        FrameCenterPanel.this.centerPanel = centerPanel;
+        FrameCenterPanel.this.centerPanelName = new JLabel(FrameCenterPanel.this.centerPanel.getCenterPanelName());
+        FrameCenterPanel.this.add(FrameCenterPanel.this.centerPanelName, BorderLayout.NORTH);
+        FrameCenterPanel.this.add(FrameCenterPanel.this.centerPanel, BorderLayout.CENTER);
+        FrameCenterPanel.this.invalidate();
+        FrameCenterPanel.this.updateUI();
     }
-
-
 }
