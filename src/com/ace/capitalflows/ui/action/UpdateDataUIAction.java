@@ -24,7 +24,7 @@ public class UpdateDataUIAction extends AbstractUIAction {
     @Override
     protected void process(final Map<String, Object> params) {
         final BaseActionContext updateData = new UpdateDataActionContext();
-        updateData.setCurTabName((String) params.get(UpdateDataActionContext.KEY_CUR_TAB_NAME));
+        updateData.setCurTabName((String) params.get(UpdateDataActionContext.KEY_CENTER_PANEL_NAME));
         ActionDispatch.execute(updateData);
         params.put(UpdateDataActionContext.KEY_TABLE_DATA, updateData.getTableData());
         params.put(UpdateDataActionContext.KEY_COMBOBOX_DATA, updateData.getComboBoxData());

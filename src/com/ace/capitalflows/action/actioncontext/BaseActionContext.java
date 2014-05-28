@@ -18,7 +18,7 @@ import com.ace.capitalflows.entity.model.DataModelFactory;
 public class BaseActionContext implements ActionContext {
     public static final String KEY_TABLE_DATA = "tableData";
     public static final String KEY_COMBOBOX_DATA = "comboBoxData";
-    public static final String KEY_CUR_TAB_NAME = "curTabName";
+    public static final String KEY_CENTER_PANEL_NAME = "fileName";
     private String curTabName;
     private String[][] tableData;
     private List<String> comboBoxData;

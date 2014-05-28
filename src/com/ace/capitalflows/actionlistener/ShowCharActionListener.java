@@ -32,7 +32,7 @@ public class ShowCharActionListener extends AbstractActionListener {
 
     @Override
     protected void updatedFrame() {
-        final String[][] dataArray = MainFrame.getInstance().getCurTabPanel().getCurTableData();
+        final String[][] dataArray = MainFrame.getInstance().getCenterPanel().getCurTableData();
         final ApplicationFrame demo = ChartFactory.getInstance().getChart(dataArray);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);

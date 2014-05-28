@@ -28,10 +28,10 @@ public class ChartFactory {
     }
 
     public ApplicationFrame getChart(final String[][] dataArray) {
-        if (StringUtils.equals(MainFrame.getInstance().getCurTabName(), Constant.TAB_NIAN_JD)) {
+        if (StringUtils.equals(MainFrame.getInstance().getCenterPanelName(), Constant.CENTER_NIAN_JD)) {
             return new NianJdChart("中国国际收支平衡", dataArray);
         }
-        if (StringUtils.equals(MainFrame.getInstance().getCurTabName(), Constant.TAB_NIAN_YD)) {
+        if (StringUtils.equals(MainFrame.getInstance().getCenterPanelName(), Constant.CENTER_NIAN_YD)) {
             return new NianYdChart("中国国际收支平衡", dataArray);
         }
         return null;

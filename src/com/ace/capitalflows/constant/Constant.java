@@ -18,8 +18,8 @@ public interface Constant {
     public static final String PTY_RESIDUALS = "residuals";
 
     //TAB
-    public static final String TAB_NIAN_JD = "NianJd";
-    public static final String TAB_NIAN_YD = "NianYd";
+    public static final String CENTER_NIAN_JD = "NianJd";
+    public static final String CENTER_NIAN_YD = "NianYd";
 
     //DataModelPath
     public static final String DATA_MODEL_PATH = "com.ace.capitalflows.entity.model.%1$sDataModel";

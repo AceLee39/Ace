@@ -23,7 +23,7 @@ public class DeleteAllDataUIAction extends AbstractUIAction {
     @Override
     protected void process(final Map<String, Object> params) {
         final DeleteAllDataActionContext deleteAllData = new DeleteAllDataActionContext();
-        deleteAllData.setCurTabName(params.get(DeleteAllDataActionContext.KEY_CUR_TAB_NAME).toString());
+        deleteAllData.setCurTabName(params.get(DeleteAllDataActionContext.KEY_CENTER_PANEL_NAME).toString());
         ActionDispatch.execute(deleteAllData);
     }
 

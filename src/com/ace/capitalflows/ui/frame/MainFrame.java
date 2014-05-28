@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import javax.swing.JMenuItem;
 
 import com.ace.capitalflows.ui.component.AbstractCenterPanel;
+import com.ace.capitalflows.ui.component.CustComboBoxPanel;
 import com.ace.capitalflows.ui.component.CustMenuBar;
 import com.ace.capitalflows.ui.component.FrameCenterPanel;
 
@@ -60,7 +61,6 @@ public class MainFrame extends BaseFrame {
     protected void addIntoContainer() {
         this.setJMenuBar(menuBar);
         container.setLayout(new BorderLayout());
-//        container.add(menuBar, BorderLayout.NORTH);
         container.add(frameCenterPanel, BorderLayout.CENTER);
     }
 
@@ -68,15 +68,19 @@ public class MainFrame extends BaseFrame {
         return menuBar.getUpdate();
     }
 
-    public String getCurTabName() {
-        return frameCenterPanel.getCurTabName();
+    public AbstractCenterPanel getCenterPanel() {
+        return frameCenterPanel.getCenterPanel();
     }
 
-    public AbstractCenterPanel getCurTabPanel() {
-        return frameCenterPanel.getCurTabPanel();
+    public CustComboBoxPanel getComboBoxPanel() {
+        return frameCenterPanel.getCenterPanel().getComboBoxPanel();
     }
 
-    public AbstractCenterPanel getCenterPanel(final String panelName) {
-        return frameCenterPanel.getCenterPanel(panelName);
+    public String getCenterPanelName() {
+        return frameCenterPanel.getCenterPanelName();
+    }
+
+    public void setCenterPanel(final AbstractCenterPanel centerPanel) {
+        frameCenterPanel.setCenterPanel(centerPanel);
     }
 }

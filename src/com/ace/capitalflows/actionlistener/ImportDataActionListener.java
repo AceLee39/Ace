@@ -29,11 +29,11 @@ public class ImportDataActionListener extends AbstractActionListener {
         final File file = fileChooser.getFile();
         if(file != null) {
             params.put(ImportDataActionContext.KEY_IMPORT_FILE, file);
-            params.put(ImportDataActionContext.KEY_CUR_TAB_NAME, getCurTabName(file.getName()));
+            params.put(ImportDataActionContext.KEY_CENTER_PANEL_NAME, getFileName(file.getName()));
         }
     }
 
-    private String getCurTabName(final String fileName) {
+    private String getFileName(final String fileName) {
         if (fileName.endsWith(".xlsx")) {
             return StringUtils.substringBefore(fileName, ".xlsx");
         }
@@ -41,5 +41,12 @@ public class ImportDataActionListener extends AbstractActionListener {
             return StringUtils.substringBefore(fileName, ".xls");
         }
         return null;
+    }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.actionlistener.AbstractActionListener#updatedFrame()
+     */
+    @Override
+    protected void updatedFrame() {
     }
 }

@@ -9,12 +9,6 @@ package com.ace.capitalflows.ui.component;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.ace.capitalflows.actionlistener.TabChangeActionListener;
-import com.ace.capitalflows.constant.Constant;
 
 /**
  * @author Administrator
@@ -22,54 +16,38 @@ import com.ace.capitalflows.constant.Constant;
  */
 @SuppressWarnings("serial")
 public class FrameCenterPanel extends JPanel {
-    private final JTabbedPane tabs;
-    private final NianJdCenterPanel nianJdCenterPanel;
-    private final NianYdCenterPanel nianYdCenterPanel;
+    private AbstractCenterPanel centerPanel;
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
-        this.add(CustComboBoxPanel.getInstance(), BorderLayout.NORTH);
-        tabs = new JTabbedPane();
-        nianJdCenterPanel = new NianJdCenterPanel();
-        CustComboBoxPanel.getInstance().setNeedReset(Boolean.FALSE);
-        tabs.add(Constant.TAB_NIAN_JD, nianJdCenterPanel);
-        nianYdCenterPanel = new NianYdCenterPanel();
-        tabs.add(Constant.TAB_NIAN_YD, nianYdCenterPanel);
-        this.add(tabs, BorderLayout.CENTER);
-        tabs.addChangeListener(new TabChangeActionListener());
-    }
-
-    public String getCurTabName() {
-        return tabs.getTitleAt(tabs.getSelectedIndex());
-    }
-
-    public AbstractCenterPanel getCurTabPanel() {
-        return (AbstractCenterPanel) tabs.getSelectedComponent();
+        centerPanel = initDefaultCenterPanel();
+        this.add(centerPanel, BorderLayout.CENTER);
     }
 
     /**
-     * @return the nianJdCenterPanel
+     * @return
      */
-    public NianJdCenterPanel getNianJdCenterPanel() {
-        return nianJdCenterPanel;
+    private AbstractCenterPanel initDefaultCenterPanel() {
+        return new NianJdCenterPanel();
     }
 
     /**
-     * @return the nianJdCenterPanel
+     * @return the centerPanel
      */
-    public NianYdCenterPanel getNianYdCenterPanel() {
-        return nianYdCenterPanel;
+    public AbstractCenterPanel getCenterPanel() {
+        return centerPanel;
+    }
+
+    public String getCenterPanelName() {
+        return centerPanel.getCenterPanelName();
     }
 
     /**
-     * @return the nianJdCenterPanel
+     * @param centerPanel the centerPanel to set
      */
-    public AbstractCenterPanel getCenterPanel(final String panelName) {
-        if (StringUtils.equals(panelName, Constant.TAB_NIAN_YD)) {
-            return nianYdCenterPanel;
-        }
-        if (StringUtils.equals(panelName, Constant.TAB_NIAN_JD)) {
-            return nianJdCenterPanel;
-        }
-        return null;
+    public void setCenterPanel(final AbstractCenterPanel centerPanel) {
+        this.centerPanel = centerPanel;
+        this.add(centerPanel, BorderLayout.CENTER);
     }
+
+
 }

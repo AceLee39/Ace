@@ -23,15 +23,15 @@ public class ComboBoxActionListener extends AbstractActionListener{
      */
     @Override
     public void actionPerformed(final ActionEvent e) {
-        final CustComboBoxPanel comboBoxPanel = CustComboBoxPanel.getInstance();
+        final CustComboBoxPanel comboBoxPanel = MainFrame.getInstance().getCenterPanel().getComboBoxPanel();
         final String from = (String) comboBoxPanel.getFromCombobox().getSelectedItem();
         final String to = (String) comboBoxPanel.getToCombobox().getSelectedItem();
         updateTable(from, to);
     }
 
     private void updateTable(final String from, final String to) {
-        final String[][] tableData = MainFrame.getInstance().getCurTabPanel().getTableData();
+        final String[][] tableData = MainFrame.getInstance().getCenterPanel().getTableData();
         final String[][] updateData = DataUtils.updataTableData(tableData, from, to);
-        MainFrame.getInstance().getCurTabPanel().setTableModel(updateData);
+        MainFrame.getInstance().getCenterPanel().setTableModel(updateData);
     }
 }

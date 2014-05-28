@@ -21,7 +21,7 @@ public class DeleteAllDataActionListener extends AbstractActionListener {
      */
     @Override
     protected void initParams() {
-        params.put(DeleteAllDataActionContext.KEY_CUR_TAB_NAME, MainFrame.getInstance().getCurTabName());
+        params.put(DeleteAllDataActionContext.KEY_CENTER_PANEL_NAME, MainFrame.getInstance().getCenterPanelName());
     }
 
 }

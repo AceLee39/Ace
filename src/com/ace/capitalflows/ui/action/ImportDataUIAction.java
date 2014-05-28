@@ -29,7 +29,7 @@ public class ImportDataUIAction extends AbstractUIAction {
             return;
         }
         importData.setImportFile(file);
-        importData.setCurTabName(params.get(ImportDataActionContext.KEY_CUR_TAB_NAME).toString());
+        importData.setCurTabName(params.get(ImportDataActionContext.KEY_CENTER_PANEL_NAME).toString());
         ActionDispatch.execute(importData);
     }
 }

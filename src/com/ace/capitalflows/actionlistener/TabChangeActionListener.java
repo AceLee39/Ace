@@ -14,11 +14,13 @@ import javax.swing.event.ChangeListener;
 
 import com.ace.capitalflows.ui.component.AbstractCenterPanel;
 import com.ace.capitalflows.ui.component.CustComboBoxPanel;
+import com.ace.capitalflows.ui.frame.MainFrame;
 
 /**
  * @author Administrator
  *
  */
+@Deprecated
 public class TabChangeActionListener implements ChangeListener{
 
     /* (non-Javadoc)
@@ -29,9 +31,7 @@ public class TabChangeActionListener implements ChangeListener{
         final JTabbedPane source = (JTabbedPane) e.getSource();
         final AbstractCenterPanel centerPanel = (AbstractCenterPanel) source.getSelectedComponent();
         final Vector<String> comboBoxData = centerPanel.getComboBoxData();
-        final CustComboBoxPanel comboBoxPanel = CustComboBoxPanel.getInstance();
-        comboBoxPanel.setNeedReset(Boolean.TRUE);
+        final CustComboBoxPanel comboBoxPanel = MainFrame.getInstance().getComboBoxPanel();
         comboBoxPanel.setComboBoxData(comboBoxData);
-        comboBoxPanel.setNeedReset(Boolean.FALSE);
     }
 }

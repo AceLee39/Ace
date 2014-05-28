@@ -21,19 +21,31 @@ import com.ace.capitalflows.entity.model.DataModel;
 public abstract class AbstractCenterPanel extends JPanel {
     protected final DataModel dataModel;
     protected final CustTablePanel tablePanel;
+    protected final CustComboBoxPanel comboBoxPanel;
     protected Vector<String> comboBoxData;
+    protected String centerPanelName;
 
     public AbstractCenterPanel() {
+        centerPanelName = initCenterPanelName();
         dataModel = initDataModel();
         comboBoxData = initComboBoxData();
-        final CustComboBoxPanel comboBoxPanel = CustComboBoxPanel.getInstance();
-        comboBoxPanel.setComboBoxData(comboBoxData);
+        comboBoxPanel = new CustComboBoxPanel(comboBoxData);
+        this.add(comboBoxPanel, BorderLayout.NORTH);
         final String[][] tableData = initTableData();
         final String[] tableHeaderData = initTableHeader();
         tablePanel = new CustTablePanel();
         tablePanel.setTableModel(tableData, tableHeaderData);
         this.add(tablePanel, BorderLayout.CENTER);
     }
+
+    /**
+     * @return the centerPanelName
+     */
+    public String getCenterPanelName() {
+        return centerPanelName;
+    }
+
+    protected abstract String initCenterPanelName();
 
     protected abstract DataModel initDataModel();
 
@@ -63,4 +75,10 @@ public abstract class AbstractCenterPanel extends JPanel {
         return comboBoxData;
     }
 
+    /**
+     * @return the comboBoxPanel
+     */
+    public CustComboBoxPanel getComboBoxPanel() {
+        return comboBoxPanel;
+    }
 }

@@ -7,6 +7,9 @@
 // ============================================================================
 package com.ace.capitalflows.ui.component;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,6 +19,7 @@ import com.ace.capitalflows.actionlistener.ImportDataActionListener;
 import com.ace.capitalflows.actionlistener.ShowCharActionListener;
 import com.ace.capitalflows.actionlistener.UpdateDataActionListener;
 import com.ace.capitalflows.constant.UILabelConstant;
+import com.ace.capitalflows.ui.frame.MainFrame;
 
 /**
  * @author Ace.Li
@@ -99,6 +103,15 @@ public class CustMenuBar extends JMenuBar {
     }
 
     protected void addButtonActionListener() {
+        monthScale.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                final AbstractCenterPanel nianYd = new NianYdCenterPanel();
+                MainFrame.getInstance().setCenterPanel(nianYd);
+                MainFrame.getInstance().repaint();
+            }
+        });
         importData.addActionListener(new ImportDataActionListener());
         update.addActionListener(new UpdateDataActionListener());
         deleteAll.addActionListener(new DeleteAllDataActionListener());

@@ -8,6 +8,7 @@ package com.ace.capitalflows.ui.component;
 
 import java.util.Vector;
 
+import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.entity.model.DataModel;
 import com.ace.capitalflows.entity.model.DataModelFactory;
 import com.ace.capitalflows.entity.model.NianYdDataModel;
@@ -49,5 +50,13 @@ public class NianYdCenterPanel extends AbstractCenterPanel {
     @Override
     protected DataModel initDataModel() {
         return DataModelFactory.getInstance().getDataModel(NianYdDataModel.class.getName());
+    }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.ui.component.AbstractCenterPanel#initCenterPanelName()
+     */
+    @Override
+    protected String initCenterPanelName() {
+        return Constant.CENTER_NIAN_YD;
     }
 }
