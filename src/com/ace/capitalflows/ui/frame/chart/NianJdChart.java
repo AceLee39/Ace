@@ -167,6 +167,9 @@ public class NianJdChart extends ApplicationFrame {
      * @return The dataset.
      */
     private XYDataset createDataset() {
+        if (dataArray.length == 0) {
+            return null;
+        }
 
         final TimeSeries cudd = new TimeSeries("CuddingTon");
         final TimeSeries resi = new TimeSeries("Residual");

@@ -35,6 +35,7 @@ public class NianYdParseExcel extends ParseExcel{
         ydResidual.setS(toDouble(row.getCell(1)));
         ydResidual.setFdi(toDouble(row.getCell(2)));
         ydResidual.setFbt(toDouble(row.getCell(3)));
+        ydResidual.calculate();
         ydResiduals.add(ydResidual);
     }
 

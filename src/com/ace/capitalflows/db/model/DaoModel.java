@@ -7,18 +7,26 @@
 package com.ace.capitalflows.db.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
+
+import com.ace.capitalflows.entity.Cuddington;
+import com.ace.capitalflows.entity.Residual;
 
 /**
  * @author Administrator
  *
  */
 public interface DaoModel {
+    public List<Cuddington> findCuddingtons();
+    public List<Residual> findResiduals();
+    public void batchInsert(Map<String, Object> result);
+    public void deleteAll();
     @SuppressWarnings("rawtypes")
-    void batchInsert(List items);
-    void deleteAll();
+    public List findScaleAll();
     @SuppressWarnings("rawtypes")
-    List findAll();
+    public List findDataAll();
     @SuppressWarnings("rawtypes")
-    Vector findComboBoxData();
+    public Vector findComboBoxData();
+    public void setNianJd(boolean isNianJd);
 }

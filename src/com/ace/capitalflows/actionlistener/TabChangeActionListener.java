@@ -6,21 +6,17 @@
 // ============================================================================
 package com.ace.capitalflows.actionlistener;
 
-import java.util.Vector;
-
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.ace.capitalflows.ui.component.AbstractCenterPanel;
-import com.ace.capitalflows.ui.component.CustComboBoxPanel;
 import com.ace.capitalflows.ui.frame.MainFrame;
 
 /**
  * @author Administrator
  *
  */
-@Deprecated
 public class TabChangeActionListener implements ChangeListener{
 
     /* (non-Javadoc)
@@ -30,8 +26,10 @@ public class TabChangeActionListener implements ChangeListener{
     public void stateChanged(final ChangeEvent e) {
         final JTabbedPane source = (JTabbedPane) e.getSource();
         final AbstractCenterPanel centerPanel = (AbstractCenterPanel) source.getSelectedComponent();
-        final Vector<String> comboBoxData = centerPanel.getComboBoxData();
-        final CustComboBoxPanel comboBoxPanel = MainFrame.getInstance().getComboBoxPanel();
-        comboBoxPanel.setComboBoxData(comboBoxData);
+        if(MainFrame.getInstance().isCurCenterPanel(centerPanel.getCenterPanelName())) {
+            return;
+        }
+        MainFrame.getInstance().setCenterPanel(centerPanel);
+        MainFrame.getInstance().pack();
     }
 }

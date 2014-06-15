@@ -9,6 +9,8 @@ package com.ace.capitalflows.entity.model;
 import java.util.Map;
 import java.util.Vector;
 
+import com.ace.capitalflows.db.model.DaoModel;
+
 /**
  * @author Administrator
  *
@@ -18,4 +20,8 @@ public interface DataModel {
     Vector<String> getComboBoxData();
     void batchInsert(Map<String, Object> result);
     void deleteAll();
+    void setMode(String mode);
+    void setNianJd(boolean isNianJd);
+    DaoModel getDaoModel();
+    void setResidual(boolean isResidual);
 }

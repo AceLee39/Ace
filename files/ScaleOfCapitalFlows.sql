@@ -12,6 +12,7 @@ use DB_SOCF;
 create table SOCF_CUDDINGTON (
     ID int primary key auto_increment,
     NIAN_JD varchar(20) unique,
+    is_nian_jd boolean,
     S1 double(30,4),
     S2 double(30,4),
     S3 double(30,4),
@@ -50,8 +51,20 @@ create table SOCF_RESIDUAL(
     L13 double(30,4),
     L14 double(30,4),
     L15 double(30,4),
-    L16 double(30,4)
+    L16 double(30,4),
+    is_nian_jd boolean
 );
+
+#quarterScale
+create table SOCF_QUARTER_SCALE (
+    id int primary key auto_increment,
+    nian_jd varchar(20) not null unique,
+    residual varchar(20),
+    cuddington varchar(20),
+    is_nian_jd boolean
+);
+
+
 
 
 create table t_user(
@@ -69,6 +82,11 @@ create table SOCF_YD_RESIDUAL (
     fbt double(30,4)
 );
 
-
+#MONTHSCALE
+create table SOCF_MONTH_SCALE (
+    id int primary key auto_increment,
+    nian_yd varchar(20) not null unique,
+    yd_residual varchar(20)
+);
 
 

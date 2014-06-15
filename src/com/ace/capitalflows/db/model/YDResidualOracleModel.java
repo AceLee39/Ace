@@ -31,4 +31,10 @@ public class YDResidualOracleModel extends YDResidualModel{
         return "INSERT INTO SOCF_YD_RESIDUAL(ID,NIAN_YD,S,FDI,FBT) " +
                 "VALUES(SEQ_YD_RESIDUAL.NEXTVAL,?,?,?,?)";
     }
+
+    @Override
+    protected String getBatchInsertSqlforMonthScale() {
+        return "INSERT INTO SOCF_MONTH_SCALE (ID,NIAN_YD,ydResidual ) " +
+                "VALUES(SEQ_MONTH_SCALE.NEXTVAL,?,?)";
+    }
 }

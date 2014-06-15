@@ -11,14 +11,14 @@ import java.util.Vector;
 import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.entity.model.DataModel;
 import com.ace.capitalflows.entity.model.DataModelFactory;
-import com.ace.capitalflows.entity.model.NianJdDataModel;
+import com.ace.capitalflows.entity.model.NianYdDataModel;
 
 /**
  * @author Administrator
  *
  */
 @SuppressWarnings("serial")
-public class NianJdCenterPanel extends AbstractCenterPanel {
+public class NianYdDataCenterPanel extends AbstractCenterPanel {
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.ui.component.AbstractCenterPanel#initTableData()
@@ -33,7 +33,7 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected String[] initTableHeader() {
-        return new String[]{"年季度", "直接法", "间接法"};
+        return new String[]{"年月度", "外汇占款增量S", "调整后FDI", "实际贸易顺差FBT"};
     }
 
     /* (non-Javadoc)
@@ -49,9 +49,7 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected DataModel initDataModel() {
-        final DataModel nianJdDataModule = DataModelFactory.getInstance().getDataModel(NianJdDataModel.class.getName(), Constant.MODE_SCALE);
-        nianJdDataModule.setNianJd(Boolean.TRUE);
-        return nianJdDataModule;
+        return DataModelFactory.getInstance().getDataModel(NianYdDataModel.class.getName(), Constant.MODE_DATA);
     }
 
     /* (non-Javadoc)
@@ -59,6 +57,6 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected String initCenterPanelName() {
-        return Constant.CENTER_NIAN_JD;
+        return Constant.CENTER_NIAN_YD_DATA;
     }
 }

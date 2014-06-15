@@ -18,7 +18,7 @@ import com.ace.capitalflows.entity.model.NianJdDataModel;
  *
  */
 @SuppressWarnings("serial")
-public class NianJdCenterPanel extends AbstractCenterPanel {
+public class NianJdResidualDataCenterPanel extends AbstractCenterPanel {
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.ui.component.AbstractCenterPanel#initTableData()
@@ -33,7 +33,10 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected String[] initTableHeader() {
-        return new String[]{"年季度", "直接法", "间接法"};
+        return new String[]{"年季度", "职工报酬差额（L1）", "各级政府差额(L2)", "资本帐户差额(L3)", "我国在外直接投资差额(L4)"
+                , "股本证券差额(L5)", "(中)长期债券差额(L6)", "(中)长期债券差额(L7)", "长期差额(L8)", "长期差额(L9)"
+                , "货币和存款差额(L10)", "长期差额(L11)", "长期差额(L12)", "长期差额(L13)", "长期差额(L14)", "FDI实际值(L15)"
+                , "贸易中的实际顺差(L16)", "外汇占款增量(S)"};
     }
 
     /* (non-Javadoc)
@@ -49,8 +52,9 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected DataModel initDataModel() {
-        final DataModel nianJdDataModule = DataModelFactory.getInstance().getDataModel(NianJdDataModel.class.getName(), Constant.MODE_SCALE);
-        nianJdDataModule.setNianJd(Boolean.TRUE);
+        final DataModel nianJdDataModule = DataModelFactory.getInstance().getDataModel(NianJdDataModel.class.getName(), Constant.MODE_DATA);
+        nianJdDataModule.setNianJd(Boolean.FALSE);
+        nianJdDataModule.setResidual(Boolean.TRUE);
         return nianJdDataModule;
     }
 
@@ -59,6 +63,6 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected String initCenterPanelName() {
-        return Constant.CENTER_NIAN_JD;
+        return Constant.CENTER_NIAN_JD_RESIDUAL_DATA;
     }
 }

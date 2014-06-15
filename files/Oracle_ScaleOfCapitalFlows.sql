@@ -58,6 +58,16 @@ create table SOCF_RESIDUAL(
 
 create sequence SEQ_RESIDUAL;
 
+#quarterScale
+create table SOCF_QUARTER_SCALE (
+    id int primary key,
+    nian_jd varchar2(20) not null unique,
+    residual varchar2(20),
+    cuddington varchar2(20)
+);
+
+create sequence SEQ_QUARTER_SCALE;
+
 create table t_user(
     id int primary key,
     username varchar2(20) unique,
@@ -75,6 +85,12 @@ create table SOCF_YD_RESIDUAL (
 
 create sequence SEQ_YD_RESIDUAL;
 
-
+#MONTHSCALE
+create table SOCF_MONTH_SCALE (
+    id int primary key,
+    nian_yd varchar2(20) not null unique,
+    ydResidual varchar2(20)
+);
+create sequence SEQ_MONTH_SCALE;
 
 

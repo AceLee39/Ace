@@ -24,7 +24,7 @@ import com.ace.capitalflows.entity.Residual;
  * @author Ace.Li
  *
  */
-public class NianJdParseExcel extends ParseExcel{
+public class NianDParseExcel extends ParseExcel{
     private final List<Cuddington> cuddingtons = new ArrayList<Cuddington>();
     private final List<Residual> residuals = new ArrayList<Residual>();
     private final List<QuarterScale> quarterScales = new ArrayList<QuarterScale>();
@@ -52,7 +52,7 @@ public class NianJdParseExcel extends ParseExcel{
         cuddington.setS13(toDouble(row.getCell(7)));
         cuddington.setS14(toDouble(row.getCell(30)));
         cuddington.setS15(toDouble(row.getCell(29)));
-        cuddington.setNianJd(Boolean.TRUE);
+        cuddington.setNianJd(Boolean.FALSE);
         cuddington.calculate();
         quarterScale.setNianJD(cuddington.getNianJD());
         quarterScale.setCuddington(cuddington.getCuddington());
@@ -76,11 +76,11 @@ public class NianJdParseExcel extends ParseExcel{
         residual.setL14(toDouble(row.getCell(27)));
         residual.setL15(toDouble(row.getCell(8)));
         residual.setL16(toDouble(row.getCell(31)));
-        residual.setNianJd(Boolean.TRUE);
+        residual.setNianJd(Boolean.FALSE);
         residual.calculate();
         quarterScale.setResidual(residual.getResidual());
         residuals.add(residual);
-        quarterScale.setNianJd(Boolean.TRUE);
+        quarterScale.setNianJd(Boolean.FALSE);
         quarterScales.add(quarterScale);
     }
 

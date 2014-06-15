@@ -25,7 +25,9 @@ import com.ace.capitalflows.actionlistener.ComboBoxActionListener;
  */
 @SuppressWarnings("serial")
 public class CustComboBoxPanel extends JPanel {
+    @SuppressWarnings("rawtypes")
     private JComboBox fromCombobox;
+    @SuppressWarnings("rawtypes")
     private JComboBox toCombobox;
     private Vector<String> comboBoxData;
     private Vector<String> toComboBoxData;
@@ -49,6 +51,7 @@ public class CustComboBoxPanel extends JPanel {
         reverseToData();
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void setComboBoxData(final Vector<String> comboBoxData) {
         this.comboBoxData = comboBoxData;
         fromCombobox.setModel(new DefaultComboBoxModel(comboBoxData));
@@ -72,18 +75,22 @@ public class CustComboBoxPanel extends JPanel {
         toCombobox.addActionListener(new ComboBoxActionListener());
     }
 
+    @SuppressWarnings("rawtypes")
     public JComboBox getFromCombobox() {
         return fromCombobox;
     }
 
+    @SuppressWarnings("rawtypes")
     public void setFromCombobox(final JComboBox fromCombobox) {
         this.fromCombobox = fromCombobox;
     }
 
+    @SuppressWarnings("rawtypes")
     public JComboBox getToCombobox() {
         return toCombobox;
     }
 
+    @SuppressWarnings("rawtypes")
     public void setToCombobox(final JComboBox toCombobox) {
         this.toCombobox = toCombobox;
     }
@@ -98,6 +105,7 @@ public class CustComboBoxPanel extends JPanel {
         this.add(toCombobox);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private void initComponent() {
         fromCombobox = new JComboBox(fromComboBoxData);
         toCombobox = new JComboBox(toComboBoxData);
@@ -108,6 +116,7 @@ public class CustComboBoxPanel extends JPanel {
         comboBoxData = new Vector<String>(comboBoxDataList);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void updateData(final List<String> comboBoxDataList) {
         this.setComboBoxData(comboBoxDataList);
         fromCombobox.setModel(new DefaultComboBoxModel(comboBoxData));

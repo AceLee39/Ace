@@ -8,8 +8,12 @@ package com.ace.capitalflows.action;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ace.capitalflows.action.actioncontext.BaseActionContext;
 import com.ace.capitalflows.action.actioncontext.UpdateDataActionContext;
+import com.ace.capitalflows.constant.Constant;
+import com.ace.capitalflows.entity.model.DataModel;
 
 /**
  * @author Administrator
@@ -22,9 +26,15 @@ public class UpdateDataAction<T extends BaseActionContext> extends BaseAction<Up
      */
     @Override
     protected void process(final UpdateDataActionContext actionContext) {
-        final String[][] dataArray = actionContext.getDataModel().getTableData();
+        final DataModel dataModel = actionContext.getDataModel();
+        if (StringUtils.equals(actionContext.getCurTabName(), Constant.CENTER_YEAR)
+                || StringUtils.equals(actionContext.getCurTabName(), Constant.CENTER_YEAR_CUDDINGTON_DATA)
+                || StringUtils.equals(actionContext.getCurTabName(), Constant.CENTER_YEAR_RESIDUAL_DATA)) {
+            dataModel.getDaoModel().setNianJd(Boolean.FALSE);
+        }
+        final String[][] dataArray = dataModel.getTableData();
         actionContext.setTableData(dataArray);
-        final List<String> comboBoxDataList = actionContext.getDataModel().getComboBoxData();
+        final List<String> comboBoxDataList = dataModel.getComboBoxData();
         actionContext.setComboBoxData(comboBoxDataList);
     }
 }

@@ -167,6 +167,9 @@ public class NianYdChart extends ApplicationFrame {
      * @return The dataset.
      */
     private XYDataset createDataset() {
+        if (dataArray.length == 0) {
+            return null;
+        }
 
         final TimeSeries ydResi = new TimeSeries("YdResidual");
         for (int i = 0; dataArray[i] != null && i < dataArray.length - 1; i++) {

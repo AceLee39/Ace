@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ace.capitalflows.constant.Constant;
-import com.ace.capitalflows.db.model.DaoModel;
 import com.ace.capitalflows.db.model.DaoModelFactory;
+import com.ace.capitalflows.entity.MonthScale;
 import com.ace.capitalflows.entity.YDResidual;
 import com.ace.capitalflows.utils.PropertiesUtil;
 
@@ -21,11 +23,10 @@ import com.ace.capitalflows.utils.PropertiesUtil;
  *
  */
 public class NianYdDataModel extends AbstractDataModel {
-    DaoModel ydResidualModel = null;
 
 
     public NianYdDataModel() {
-        ydResidualModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("YDResidualModel"));
+        daoModel = DaoModelFactory.getInstance().getDaoModel(PropertiesUtil.getString("YDResidualModel"));
     }
 
     /* (non-Javadoc)
@@ -46,27 +47,39 @@ public class NianYdDataModel extends AbstractDataModel {
 
     @SuppressWarnings("unchecked")
     public String[][] getNianYdData() {
-        final List<YDResidual> ydResiduals = ydResidualModel.findAll();
-        final String[][] nianYdData = new String[ydResiduals.size()][2];
-        for (int i=0; i<ydResiduals.size(); i++) {
-            nianYdData[i][0] = ydResiduals.get(i).getNianYD();
-            nianYdData[i][1] = ydResiduals.get(i).getYdResidual();
+        String[][] nianYdData = null;
+        if (StringUtils.equals(this.mode, Constant.MODE_SCALE)) {
+            final List<MonthScale> monthScales = daoModel.findScaleAll();
+            nianYdData = new String[monthScales.size()][2];
+            for (int i=0; i<monthScales.size(); i++) {
+                nianYdData[i][0] = monthScales.get(i).getNianYD();
+                nianYdData[i][1] = monthScales.get(i).getYdResidual();
+            }
+        }
+        if (StringUtils.equals(this.mode, Constant.MODE_DATA)) {
+            final List<YDResidual> yDResiduals = daoModel.findDataAll();
+            nianYdData = new String[yDResiduals.size()][4];
+            for (int i=0; i<yDResiduals.size(); i++) {
+                nianYdData[i][0] = yDResiduals.get(i).getNianYD();
+                nianYdData[i][1] = String.valueOf(yDResiduals.get(i).getS());
+                nianYdData[i][2] = String.valueOf(yDResiduals.get(i).getFdi());
+                nianYdData[i][3] = String.valueOf(yDResiduals.get(i).getFbt());
+            }
         }
         return nianYdData;
     }
 
     @SuppressWarnings("unchecked")
     public Vector<String> getNianYdComboBoxData() {
-        return ydResidualModel.findComboBoxData();
+        return daoModel.findComboBoxData();
     }
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.entity.model.DataModel#batchInsert(java.util.List[])
      */
-    @SuppressWarnings({"unchecked"})
     @Override
     public void batchInsert(final Map<String, Object> result) {
-        ydResidualModel.batchInsert((List<YDResidual>) result.get(Constant.PTY_YD_RESIDUALS));
+        daoModel.batchInsert(result);
     }
 
     /* (non-Javadoc)
@@ -74,6 +87,14 @@ public class NianYdDataModel extends AbstractDataModel {
      */
     @Override
     public void deleteAll() {
-        ydResidualModel.deleteAll();
+        daoModel.deleteAll();
+    }
+
+    /* (non-Javadoc)
+     * @see com.ace.capitalflows.entity.model.DataModel#setMode(java.lang.String)
+     */
+    @Override
+    public void setMode(final String mode) {
+        this.mode = mode;
     }
 }

@@ -49,7 +49,7 @@ public class NianYdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected DataModel initDataModel() {
-        return DataModelFactory.getInstance().getDataModel(NianYdDataModel.class.getName());
+        return DataModelFactory.getInstance().getDataModel(NianYdDataModel.class.getName(), Constant.MODE_SCALE);
     }
 
     /* (non-Javadoc)

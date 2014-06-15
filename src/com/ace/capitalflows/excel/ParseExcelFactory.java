@@ -18,11 +18,14 @@ import com.ace.capitalflows.constant.Constant;
 public class ParseExcelFactory {
 
     public ParseExcel getParseExcel(final String centerPanelName) {
-        if (StringUtils.equals(centerPanelName, Constant.CENTER_NIAN_JD)) {
+        if (StringUtils.equals(centerPanelName, StringUtils.substringBefore(Constant.CENTER_NIAN_JD, Constant.SEPARATOR_SLASH))) {
             return new NianJdParseExcel();
         }
-        if (StringUtils.equals(centerPanelName, Constant.CENTER_NIAN_YD)) {
+        if (StringUtils.equals(centerPanelName, StringUtils.substringBefore(Constant.CENTER_NIAN_YD, Constant.SEPARATOR_SLASH))) {
             return new NianYdParseExcel();
+        }
+        if (StringUtils.equals(centerPanelName, StringUtils.substringBefore(Constant.CENTER_YEAR, Constant.SEPARATOR_SLASH))) {
+            return new NianDParseExcel();
         }
         return null;
     }

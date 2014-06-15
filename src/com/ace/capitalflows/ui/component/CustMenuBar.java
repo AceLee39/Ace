@@ -24,8 +24,10 @@ import com.ace.capitalflows.constant.UILabelConstant;
  */
 @SuppressWarnings("serial")
 public class CustMenuBar extends JMenuBar {
-    private JMenuItem yearData;
-    private JMenuItem quarterData;
+    private JMenuItem yearResidualData;
+    private JMenuItem yearCuddingtonData;
+    private JMenuItem quarterResidualData;
+    private JMenuItem quarterCuddingtonData;
     private JMenuItem monthData;
 
     private JMenuItem yearFormula;
@@ -48,10 +50,14 @@ public class CustMenuBar extends JMenuBar {
 
     private void init() {
         final JMenu baseData = new JMenu(UILabelConstant.UI_LABEL_BASEDATA);
-        yearData = new JMenuItem(UILabelConstant.UI_LABEL_YEARDATA);
-        baseData.add(yearData);
-        quarterData = new JMenuItem(UILabelConstant.UI_LABEL_QUARTERDATA);
-        baseData.add(quarterData);
+        yearCuddingtonData = new JMenuItem(UILabelConstant.UI_LABEL_YEAR_CUDDINGTON_DATA);
+        baseData.add(yearCuddingtonData);
+        yearResidualData = new JMenuItem(UILabelConstant.UI_LABEL_YEAR_RESIDUAL_DATA);
+        baseData.add(yearResidualData);
+        quarterCuddingtonData = new JMenuItem(UILabelConstant.UI_LABEL_QUARTER_CUDDINGTON_DATA);
+        baseData.add(quarterCuddingtonData);
+        quarterResidualData = new JMenuItem(UILabelConstant.UI_LABEL_QUARTER_RESIDUAL_DATA);
+        baseData.add(quarterResidualData);
         monthData = new JMenuItem(UILabelConstant.UI_LABEL_MONTHDATA);
         baseData.add(monthData);
         this.add(baseData);
@@ -100,10 +106,25 @@ public class CustMenuBar extends JMenuBar {
     }
 
     protected void addButtonActionListener() {
+        final AbstractCenterPanel nianD = new NianDCenterPanel();
+        yearScale.addActionListener(new CustMenuActionListener(nianD));
         final AbstractCenterPanel nianYd = new NianYdCenterPanel();
         monthScale.addActionListener(new CustMenuActionListener(nianYd));
         final AbstractCenterPanel nianJd = new NianJdCenterPanel();
-        yearScale.addActionListener(new CustMenuActionListener(nianJd));
+        quarterScale.addActionListener(new CustMenuActionListener(nianJd));
+
+        final AbstractCenterPanel nianYdData = new NianYdDataCenterPanel();
+        monthData.addActionListener(new CustMenuActionListener(nianYdData));
+        final AbstractCenterPanel nianJdResidualData = new NianJdResidualDataCenterPanel();
+        quarterResidualData.addActionListener(new CustMenuActionListener(nianJdResidualData));
+        final AbstractCenterPanel nianJdCuddingtonData = new NianJdCuddingtonDataCenterPanel();
+        quarterCuddingtonData.addActionListener(new CustMenuActionListener(nianJdCuddingtonData));
+        final AbstractCenterPanel nianDResidualData = new NianDResidualDataCenterPanel();
+        yearResidualData.addActionListener(new CustMenuActionListener(nianDResidualData));
+        final AbstractCenterPanel nianDCuddingtonData = new NianDCuddingtonDataCenterPanel();
+        yearCuddingtonData.addActionListener(new CustMenuActionListener(nianDCuddingtonData));
+
+
 
         importData.addActionListener(new ImportDataActionListener());
         update.addActionListener(new UpdateDataActionListener());

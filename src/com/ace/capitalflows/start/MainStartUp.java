@@ -21,8 +21,8 @@ public class MainStartUp {
     public static void main(final String[] args) {
        // System.out.println(YDResidualMysqlModel.class.getName());
        // System.out.println(Class.forName("com.ace.capitalflows.db.model.YDResidualMysqlModel"));
-       //PropertiesUtil.initDBInstance();
-      PropertiesUtil.initDBOracleInstance();
+       PropertiesUtil.initDBInstance();
+//      PropertiesUtil.initDBOracleInstance();
       SwingUtilities.invokeLater(new Runnable() {
         @Override
         public void run() {

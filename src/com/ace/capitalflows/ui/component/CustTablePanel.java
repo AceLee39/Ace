@@ -6,6 +6,9 @@
 // ============================================================================
 package com.ace.capitalflows.ui.component;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,6 +30,9 @@ public class CustTablePanel extends JPanel {
     public CustTablePanel() {
         tableModel = new DefaultTableModel();
         table.setModel(tableModel);
+        final double width = Toolkit.getDefaultToolkit().getScreenSize().width; //得到当前屏幕分辨率的高
+        table.setPreferredScrollableViewportSize(new Dimension((int)width-100, 608));
+        table.setEnabled(Boolean.FALSE);
         final JScrollPane jsTable = new JScrollPane(table);
         this.add(jsTable);
     }
@@ -40,7 +46,7 @@ public class CustTablePanel extends JPanel {
     }
 
     public void setTableModel(final String[][] tableData) {
-        if (this.tableData.length == 0) {
+        if (this.tableData == null || this.tableData.length == 0) {
             this.tableData = tableData;
         }
         this.curTableData = tableData;

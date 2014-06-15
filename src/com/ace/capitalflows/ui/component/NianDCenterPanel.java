@@ -18,7 +18,7 @@ import com.ace.capitalflows.entity.model.NianJdDataModel;
  *
  */
 @SuppressWarnings("serial")
-public class NianJdCenterPanel extends AbstractCenterPanel {
+public class NianDCenterPanel extends AbstractCenterPanel {
 
     /* (non-Javadoc)
      * @see com.ace.capitalflows.ui.component.AbstractCenterPanel#initTableData()
@@ -49,9 +49,9 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected DataModel initDataModel() {
-        final DataModel nianJdDataModule = DataModelFactory.getInstance().getDataModel(NianJdDataModel.class.getName(), Constant.MODE_SCALE);
-        nianJdDataModule.setNianJd(Boolean.TRUE);
-        return nianJdDataModule;
+        final DataModel nianDDataModule = DataModelFactory.getInstance().getDataModel(NianJdDataModel.class.getName(), Constant.MODE_SCALE);
+        nianDDataModule.getDaoModel().setNianJd(Boolean.FALSE);
+        return nianDDataModule;
     }
 
     /* (non-Javadoc)
@@ -59,6 +59,6 @@ public class NianJdCenterPanel extends AbstractCenterPanel {
      */
     @Override
     protected String initCenterPanelName() {
-        return Constant.CENTER_NIAN_JD;
+        return Constant.CENTER_YEAR;
     }
 }

@@ -30,9 +30,15 @@ public class Residual {
     private double l14;
     private double l15;
     private double l16;
+    private boolean isNianJd;
     private String residual;
 
-
+    public boolean isNianJd() {
+        return isNianJd;
+    }
+    public void setNianJd(final boolean isNianJd) {
+        this.isNianJd = isNianJd;
+    }
     public int getId() {
         return id;
     }

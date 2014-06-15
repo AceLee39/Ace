@@ -17,8 +17,8 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class FrameCenterPanel extends JPanel {
-    private AbstractCenterPanel centerPanel;
-    private JLabel centerPanelName;
+    protected AbstractCenterPanel centerPanel;
+    protected JLabel centerPanelName;
     public FrameCenterPanel() {
         this.setLayout(new BorderLayout());
         centerPanel = initDefaultCenterPanel();

@@ -6,8 +6,12 @@
 // ============================================================================
 package com.ace.capitalflows.action;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.ace.capitalflows.action.actioncontext.BaseActionContext;
 import com.ace.capitalflows.action.actioncontext.DeleteAllDataActionContext;
+import com.ace.capitalflows.constant.Constant;
+import com.ace.capitalflows.entity.model.DataModel;
 
 /**
  * @author Administrator
@@ -20,7 +24,11 @@ public class DeleteAllDataAction<T extends BaseActionContext> extends BaseAction
      */
     @Override
     protected void process(final DeleteAllDataActionContext actionContext) {
-        actionContext.getDataModel().deleteAll();
+        final DataModel dataModel = actionContext.getDataModel();
+        if (StringUtils.equals(actionContext.getCurTabName(), Constant.CENTER_YEAR)) {
+            dataModel.getDaoModel().setNianJd(Boolean.FALSE);
+        }
+        dataModel.deleteAll();
     }
 
 }

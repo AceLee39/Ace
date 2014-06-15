@@ -29,6 +29,7 @@ public class Cuddington {
     private double s13;
     private double s14;
     private double s15;
+    private boolean isNianJd;
     private String cuddington;
     public int getId() {
         return id;
@@ -65,6 +66,13 @@ public class Cuddington {
     }
     public void setS4(final double s4) {
         this.s4 = s4;
+    }
+
+    public boolean isNianJd() {
+        return isNianJd;
+    }
+    public void setNianJd(final boolean isNianJd) {
+        this.isNianJd = isNianJd;
     }
     public double getS5() {
         return s5;

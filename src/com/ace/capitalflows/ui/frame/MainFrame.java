@@ -7,6 +7,7 @@
 package com.ace.capitalflows.ui.frame;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JMenuItem;
 
@@ -33,7 +34,10 @@ public class MainFrame extends BaseFrame {
      */
     private MainFrame(final String title) {
         super(title);
-        this.setSize(500, 600);
+        final double width = Toolkit.getDefaultToolkit().getScreenSize().width; //得到当前屏幕分辨率的高
+        final double height = Toolkit.getDefaultToolkit().getScreenSize().height;//得到当前屏幕分辨率的宽
+        this.setSize((int)width,(int)height);//设置大小
+        this.setLocation(0,0); //设置窗体居中显示
         this.setVisible(true);
     }
 
