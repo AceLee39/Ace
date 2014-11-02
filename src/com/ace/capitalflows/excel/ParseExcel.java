@@ -38,8 +38,9 @@ public abstract class ParseExcel {
     /**
      * @param importSheet
      */
-    private void parseSheet(final XSSFSheet importSheet) {
+    protected void parseSheet(final XSSFSheet importSheet) {
         final int lastRowNum = importSheet.getLastRowNum();
+        System.out.println("lastRowNum : " + lastRowNum);
         for (int i = 1; i < lastRowNum-1; i++) {
             final XSSFRow row = importSheet.getRow(i);
             parseRow(row);

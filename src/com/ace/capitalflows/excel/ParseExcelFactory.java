@@ -24,7 +24,7 @@ public class ParseExcelFactory {
         if (StringUtils.equals(centerPanelName, StringUtils.substringBefore(Constant.CENTER_NIAN_YD, Constant.SEPARATOR_SLASH))) {
             return new NianYdParseExcel();
         }
-        if (StringUtils.equals(centerPanelName, StringUtils.substringBefore(Constant.CENTER_YEAR, Constant.SEPARATOR_SLASH))) {
+        if (StringUtils.equals(centerPanelName, Constant.CENTER_YEAR)) {
             return new NianDParseExcel();
         }
         return null;

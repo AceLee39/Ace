@@ -30,6 +30,7 @@ public class ImportDataUIAction extends AbstractUIAction {
         }
         importData.setImportFile(file);
         importData.setCurTabName(params.get(ImportDataActionContext.KEY_CENTER_PANEL_NAME).toString());
+        System.out.println("CurTabName : " + importData.getCurTabName());
         ActionDispatch.execute(importData);
     }
 }

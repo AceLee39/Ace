@@ -11,6 +11,7 @@ import java.io.File;
 import org.apache.commons.lang.StringUtils;
 
 import com.ace.capitalflows.action.actioncontext.ImportDataActionContext;
+import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.ui.component.CustFileChooser;
 
 
@@ -29,7 +30,11 @@ public class ImportDataActionListener extends AbstractActionListener {
         final File file = fileChooser.getFile();
         if(file != null) {
             params.put(ImportDataActionContext.KEY_IMPORT_FILE, file);
-            params.put(ImportDataActionContext.KEY_CENTER_PANEL_NAME, getFileName(file.getName()));
+            String fileName = getFileName(file.getName());
+            if (StringUtils.equals(fileName, "NianD")) {
+                fileName = Constant.CENTER_YEAR;
+            }
+            params.put(ImportDataActionContext.KEY_CENTER_PANEL_NAME, fileName);
         }
     }
 

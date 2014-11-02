@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.entity.Cuddington;
@@ -119,5 +120,18 @@ public class NianDParseExcel extends ParseExcel{
         result.put(Constant.PTY_RESIDUALS, residuals);
         result.put(Constant.PTY_QUARTER_SCALES, quarterScales);
         return result;
+    }
+
+    /**
+     * @param importSheet
+     */
+    @Override
+    protected void parseSheet(final XSSFSheet importSheet) {
+        final int lastRowNum = importSheet.getLastRowNum() + 2;
+        System.out.println("lastRowNum : " + lastRowNum);
+        for (int i = 1; i < lastRowNum-1; i++) {
+            final XSSFRow row = importSheet.getRow(i);
+            parseRow(row);
+        }
     }
 }

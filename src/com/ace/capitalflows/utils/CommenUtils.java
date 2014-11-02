@@ -39,7 +39,7 @@ public class CommenUtils {
         if (nianJD.contains(SUB_Q)) {
             return NumberUtils.toInt(StringUtils.substringBefore(nianJD, SUB_Q), 0);
         }
-        return 0;
+        return NumberUtils.toInt(nianJD);
     }
 
     public static int parseJDORYD(final String nianJD) {

@@ -35,7 +35,7 @@ public class ChartFactory {
             return new NianYdChart("中国国际收支平衡", dataArray);
         }
         if (StringUtils.equals(MainFrame.getInstance().getCenterPanelName(), Constant.CENTER_YEAR)) {
-            return new NianYdChart("中国国际收支平衡", dataArray);
+            return new NianDChart("中国国际收支平衡", dataArray);
         }
         return null;
     }

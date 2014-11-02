@@ -21,6 +21,7 @@ public interface Constant {
     public static final String CENTER_NIAN_JD = "NianJd/Scale";
     public static final String CENTER_NIAN_YD = "NianYd/Scale";
     public static final String CENTER_YEAR = "Year/Scale";
+    public static final String CENTER_NIAN_D = "NianD/Scale";
     public static final String CENTER_NIAN_YD_DATA = "NianYd/Data";
     public static final String CENTER_YEAR_RESIDUAL_DATA = "Year/ResidualData";
     public static final String CENTER_YEAR_CUDDINGTON_DATA = "Year/CuddingtonData";
