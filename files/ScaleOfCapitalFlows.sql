@@ -92,9 +92,9 @@ create table SOCF_MONTH_SCALE (
 
 #Attribute
 create table SOCF_ATTRIBUTE (
-    id int promary key auto_increment,
+    id int primary key auto_increment,
     attr_key varchar(20) not null unique,
     attr_value varchar(20)
 );
 
-insert SOCF_ATTRIBUTE(id,attr_key,attr_value) values (null,'isInit','false');
+insert into SOCF_ATTRIBUTE(id,attr_key,attr_value) select null, 'isInit','false' from dual where not exists (select 1 from socf_attribute where attr_key='isInit') ;

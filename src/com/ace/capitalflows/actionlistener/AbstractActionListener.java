@@ -35,9 +35,14 @@ public abstract class AbstractActionListener implements ActionListener {
      * @see com.ace.capitalflows.composer.Composer#doUpdated()
      */
     public void doUpdated() {
-        initParams();
-        doUIAction();
-        updatedFrame();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                initParams();
+                doUIAction();
+                updatedFrame();
+            }
+        }).start();
     }
 
 

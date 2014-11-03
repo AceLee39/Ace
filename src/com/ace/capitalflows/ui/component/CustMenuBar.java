@@ -15,7 +15,9 @@ import com.ace.capitalflows.actionlistener.CustMenuActionListener;
 import com.ace.capitalflows.actionlistener.DeleteAllDataActionListener;
 import com.ace.capitalflows.actionlistener.ImportDataActionListener;
 import com.ace.capitalflows.actionlistener.ShowCharActionListener;
+import com.ace.capitalflows.actionlistener.ShowFormulaActionListener;
 import com.ace.capitalflows.actionlistener.UpdateDataActionListener;
+import com.ace.capitalflows.constant.Constant;
 import com.ace.capitalflows.constant.UILabelConstant;
 
 /**
@@ -124,7 +126,9 @@ public class CustMenuBar extends JMenuBar {
         final AbstractCenterPanel nianDCuddingtonData = new NianDCuddingtonDataCenterPanel();
         yearCuddingtonData.addActionListener(new CustMenuActionListener(nianDCuddingtonData));
 
-
+        yearFormula.addActionListener(new ShowFormulaActionListener(Constant.FORMULA_YEAR));
+        quarterFormula.addActionListener(new ShowFormulaActionListener(Constant.FORMULA_QUARTER));
+        monthFormula.addActionListener(new ShowFormulaActionListener(Constant.FORMULA_MONTH));
 
         importData.addActionListener(new ImportDataActionListener());
         update.addActionListener(new UpdateDataActionListener());

@@ -29,14 +29,14 @@ public class DBUtils {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            final String sql = "select value from SOCF_ATTRIBUTE WHERE ATTR_KEY = ?";
+            final String sql = "select attr_value from SOCF_ATTRIBUTE WHERE ATTR_KEY = ?";
             if (StringUtils.equals(PropertiesUtil.getString("DBMODE"), "mysql")) {
                 conn = DaoFactory.getInstance().getConn();
             } else {
                 conn = OracleDaoFactory.getInstance().getConn();
             }
             ps = conn.prepareStatement(sql);
-            ps.setString(0, key);
+            ps.setString(1, key);
             rs = ps.executeQuery();
             if (rs != null) {
                 rs.next();
@@ -51,7 +51,7 @@ public class DBUtils {
     }
 
     public static void updateAttributeValue(final String key, final String value) {
-        final String sql = "update SOCF_ATTRIBUTE set attr_value=? where key=?";
+        final String sql = "update SOCF_ATTRIBUTE set attr_value=? where attr_key=?";
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -61,6 +61,8 @@ public class DBUtils {
                 conn = OracleDaoFactory.getInstance().getConn();
             }
             ps = conn.prepareStatement(sql);
+            ps.setString(1, value);
+            ps.setString(2, key);
             ps.executeUpdate();
         } catch (final SQLException e) {
             rollback(conn);
@@ -70,7 +72,6 @@ public class DBUtils {
             closeAll(conn, ps, null);
         }
     }
-
 
     public static void rollback(final Connection conn) {
         try {

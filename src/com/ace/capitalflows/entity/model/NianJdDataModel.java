@@ -76,7 +76,6 @@ public class NianJdDataModel extends AbstractDataModel {
                     nianJdData[i][14] = Double2String(residuals.get(i).getL14());
                     nianJdData[i][15] = Double2String(residuals.get(i).getL15());
                     nianJdData[i][16] = Double2String(residuals.get(i).getL16());
-                    System.out.println("residuals : " + residuals.size() + ", L16 : " + residuals.get(i).getL16());
                     nianJdData[i][17] = Double2String(residuals.get(i).getS());
                 }
             } else {

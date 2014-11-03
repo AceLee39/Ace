@@ -38,4 +38,8 @@ public interface Constant {
     String MODE_SCALE = "Scale";
     String MODE_DATA = "Data";
 
+    //FORMULA
+    String FORMULA_YEAR = "Year";
+    String FORMULA_QUARTER = "Quarter";
+    String FORMULA_MONTH = "Month";
 }
