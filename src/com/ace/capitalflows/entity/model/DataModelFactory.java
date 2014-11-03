@@ -49,6 +49,9 @@ public class DataModelFactory {
         if (StringUtils.equals(centerName, Constant.CENTER_YEAR)) {
             centerName = Constant.CENTER_NIAN_JD;
         }
+        if (StringUtils.equals(centerName, Constant.CENTER_NIAN_D)) {
+            centerName = Constant.CENTER_NIAN_JD;
+        }
         if (StringUtils.equals(centerName, Constant.CENTER_YEAR_CUDDINGTON_DATA)) {
             centerName = Constant.CENTER_NIAN_JD_CUDDINGTON_DATA;
         }

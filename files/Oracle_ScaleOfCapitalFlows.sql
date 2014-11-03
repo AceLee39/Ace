@@ -5,13 +5,18 @@
 #   股本证券差额(S4) EquitySecuritiesDifferences S4
 #   货币市场工具差额(S5) MoneyMarketInstrumentsDifferences S5
 #
-
-create database DB_SOCF;#ScaleOfCapitalFlows 资本流动规模
-use DB_SOCF;
+drop table SOCF_CUDDINGTON;
+drop table SOCF_RESIDUAL;
+drop table SOCF_QUARTER_SCALE;
+drop table t_user;
+drop table SOCF_YD_RESIDUAL;
+drop table SOCF_MONTH_SCALE;
+drop table SOCF_ATTRIBUTE;
 
 create table SOCF_CUDDINGTON (
     ID int primary key,
     NIAN_JD varchar2(20) unique,
+    is_nian_jd char(1),
     S1 number(30,4),
     S2 number(30,4),
     S3 number(30,4),
@@ -37,6 +42,7 @@ create sequence SEQ_CUDDINGTON;
 create table SOCF_RESIDUAL(
     ID int primary key,
     NIAN_JD varchar2(20) unique,
+    is_nian_jd char(1),
     S number(30,4),
     L1 number(30,4),
     L2 number(30,4),
@@ -89,8 +95,16 @@ create sequence SEQ_YD_RESIDUAL;
 create table SOCF_MONTH_SCALE (
     id int primary key,
     nian_yd varchar2(20) not null unique,
-    ydResidual varchar2(20)
+    yd_residual varchar2(20)
 );
 create sequence SEQ_MONTH_SCALE;
 
+#Attribute
+create table SOCF_ATTRIBUTE (
+    id int promary key,
+    attr_key varchar2(20) not null unique,
+    attr_value varchar2(20)
+);
+create sequence SEQ_ATTRIBUTE;
 
+insert SOCF_ATTRIBUTE(id,attr_key,attr_value) values (SEQ_ATTRIBUTE.nextval,'isInit','false');

@@ -27,6 +27,9 @@ public class ParseExcelFactory {
         if (StringUtils.equals(centerPanelName, Constant.CENTER_YEAR)) {
             return new NianDParseExcel();
         }
+        if (StringUtils.equals(centerPanelName, Constant.CENTER_NIAN_D)) {
+            return new NianDParseExcel();
+        }
         return null;
     }
 

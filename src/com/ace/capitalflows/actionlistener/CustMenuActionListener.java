@@ -10,6 +10,8 @@ package com.ace.capitalflows.actionlistener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.SwingUtilities;
+
 import com.ace.capitalflows.ui.component.AbstractCenterPanel;
 import com.ace.capitalflows.ui.frame.MainFrame;
 
@@ -32,7 +34,13 @@ public class CustMenuActionListener implements ActionListener {
         if(MainFrame.getInstance().isCurCenterPanel(centerPanel.getCenterPanelName())) {
             return;
         }
-        MainFrame.getInstance().setCenterPanel(centerPanel);
-        MainFrame.getInstance().pack();
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                MainFrame.getInstance().setCenterPanel(centerPanel);
+                MainFrame.getInstance().pack();
+            }
+        });
     }
 }

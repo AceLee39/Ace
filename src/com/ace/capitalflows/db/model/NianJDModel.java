@@ -174,8 +174,8 @@ public class NianJDModel extends AbstractDaoModel{
             ps.setDouble(18, residual.getL16());
             ps.setBoolean(19, residual.isNianJd());
             ps.addBatch();
-            ps.executeBatch();
         }
+        ps.executeBatch();
     }
 
     /**
@@ -341,8 +341,8 @@ public class NianJDModel extends AbstractDaoModel{
             ps.setString(3, quarterScale.getResidual());
             ps.setBoolean(4, quarterScale.isNianJd());
             ps.addBatch();
-            ps.executeBatch();
         }
+        ps.executeBatch();
     }
 
     /**
@@ -375,8 +375,8 @@ public class NianJDModel extends AbstractDaoModel{
             ps.setDouble(16, cuddington.getS15());
             ps.setBoolean(17, cuddington.isNianJd());
             ps.addBatch();
-            ps.executeBatch();
         }
+        ps.executeBatch();
     }
 
     /**

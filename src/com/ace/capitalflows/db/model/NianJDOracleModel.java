@@ -46,6 +46,10 @@ public class NianJDOracleModel extends NianJDModel{
                 "VALUES(SEQ_CUDDINGTON.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     }
 
-
+    @Override
+    protected String getbatchInsertScaleSql() {
+        return "INSERT INTO SOCF_QUARTER_SCALE(ID,NIAN_JD,cuddington,residual,is_nian_jd) " +
+                "VALUES(SEQ_QUARTER_SCALE.NEXTVAL,?,?,?,?)";
+    }
 
 }

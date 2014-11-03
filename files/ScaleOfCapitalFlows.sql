@@ -5,7 +5,7 @@
 #   股本证券差额(S4) EquitySecuritiesDifferences S4
 #   货币市场工具差额(S5) MoneyMarketInstrumentsDifferences S5
 #
-
+drop database  if exists DB_SOCF;
 create database DB_SOCF;#ScaleOfCapitalFlows 资本流动规模
 use DB_SOCF;
 
@@ -90,3 +90,11 @@ create table SOCF_MONTH_SCALE (
 );
 
 
+#Attribute
+create table SOCF_ATTRIBUTE (
+    id int promary key auto_increment,
+    attr_key varchar(20) not null unique,
+    attr_value varchar(20)
+);
+
+insert SOCF_ATTRIBUTE(id,attr_key,attr_value) values (null,'isInit','false');

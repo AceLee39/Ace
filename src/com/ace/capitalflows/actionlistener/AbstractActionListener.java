@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.SwingUtilities;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.ace.capitalflows.action.actioncontext.BaseActionContext;
@@ -66,14 +68,20 @@ public abstract class AbstractActionListener implements ActionListener {
         }
         updateParams.put(BaseActionContext.KEY_CENTER_PANEL_NAME, centerPanelName);
         UIActionExecute.execute("UpdateDataActionListener", updateParams);
-        final String[][] dataArray = (String[][]) updateParams.get(UpdateDataActionContext.KEY_TABLE_DATA);
-        final List<String> comboBoxDataList = (List<String>) updateParams.get(UpdateDataActionContext.KEY_COMBOBOX_DATA);
-        MainFrame.getInstance().getCenterPanel().setTableModel(dataArray);
-        MainFrame.getInstance().getCenterPanel().setComboBoxData(new Vector<String>(comboBoxDataList));
-        if (StringUtils.equals(centerPanelName, MainFrame.getInstance().getCenterPanelName())) {
-            MainFrame.getInstance().getCenterPanel().getComboBoxPanel().updateData(comboBoxDataList);
-        }
-        MainFrame.getInstance().repaint();
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                final String[][] dataArray = (String[][]) updateParams.get(UpdateDataActionContext.KEY_TABLE_DATA);
+                final List<String> comboBoxDataList = (List<String>) updateParams.get(UpdateDataActionContext.KEY_COMBOBOX_DATA);
+                MainFrame.getInstance().getCenterPanel().setTableModel(dataArray);
+                MainFrame.getInstance().getCenterPanel().setComboBoxData(new Vector<String>(comboBoxDataList));
+                if (StringUtils.equals(centerPanelName, MainFrame.getInstance().getCenterPanelName())) {
+                    MainFrame.getInstance().getCenterPanel().getComboBoxPanel().updateData(comboBoxDataList);
+                }
+                MainFrame.getInstance().repaint();
+            }
+        });
     }
 
 

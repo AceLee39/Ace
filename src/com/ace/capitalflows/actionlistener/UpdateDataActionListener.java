@@ -8,6 +8,8 @@ package com.ace.capitalflows.actionlistener;
 
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import com.ace.capitalflows.action.actioncontext.UpdateDataActionContext;
 import com.ace.capitalflows.ui.frame.MainFrame;
 
@@ -28,10 +30,15 @@ public class UpdateDataActionListener extends AbstractActionListener {
     @SuppressWarnings("unchecked")
     @Override
     protected void updatedFrame() {
-        final String[][] dataArray = (String[][]) params.get(UpdateDataActionContext.KEY_TABLE_DATA);
-        MainFrame.getInstance().getCenterPanel().setTableModel(dataArray);
-        final List<String> comboBoxDataList = (List<String>) params.get(UpdateDataActionContext.KEY_COMBOBOX_DATA);
-        MainFrame.getInstance().getComboBoxPanel().updateData(comboBoxDataList);
-        MainFrame.getInstance().repaint();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                final String[][] dataArray = (String[][]) params.get(UpdateDataActionContext.KEY_TABLE_DATA);
+                MainFrame.getInstance().getCenterPanel().setTableModel(dataArray);
+                final List<String> comboBoxDataList = (List<String>) params.get(UpdateDataActionContext.KEY_COMBOBOX_DATA);
+                MainFrame.getInstance().getComboBoxPanel().updateData(comboBoxDataList);
+                MainFrame.getInstance().repaint();
+            }
+        });
     }
 }
