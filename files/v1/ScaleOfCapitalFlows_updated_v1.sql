@@ -7,7 +7,7 @@
 #
 
 #Attribute
-create table SOCF_ATTRIBUTE (
+create table IF NOT EXISTS SOCF_ATTRIBUTE (
     id int promary key auto_increment,
     attr_key varchar(20) not null unique,
     attr_value varchar(20)
