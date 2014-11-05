@@ -47,11 +47,27 @@ public class ShowFormulaActionListener implements ActionListener {
         if (formula.equalsIgnoreCase(Constant.FORMULA_YEAR) || formula.equalsIgnoreCase(Constant.FORMULA_QUARTER)) {
             final List<FormulaElem> residualForm = buildResidualForm();
             final List<FormulaElem> cuddingtonForm = buildCuddingtonForm();
-            final ShowFormulaJFrame sff = new ShowFormulaJFrame(formula, residualForm, cuddingtonForm);
+            final ShowFormulaJFrame sff = new ShowFormulaJFrame(formula,
+                    residualForm, cuddingtonForm, null);
             sff.setVisible(true);
         } else if (formula.equalsIgnoreCase(Constant.FORMULA_MONTH)) {
-
+            final List<FormulaElem> ydResidualForm = buildYdResidualForm();
+            final ShowFormulaJFrame sff = new ShowFormulaJFrame(formula,
+                    null, null, ydResidualForm);
+            sff.setVisible(true);
         }
+    }
+
+    /**
+     * @return
+     */
+    private List<FormulaElem> buildYdResidualForm() {
+        final ArrayList<FormulaElem> ydResidualForm = new ArrayList<FormulaElem>();
+        for (int i = 0, length=ydResidualElems.length; i < length; i++) {
+            final FormulaElem fe = new FormulaElem("-", ydResidualElems[i], ydResidualLabels[i]);
+            ydResidualForm.add(fe);
+        }
+        return ydResidualForm;
     }
 
     /**
@@ -72,7 +88,7 @@ public class ShowFormulaActionListener implements ActionListener {
     private List<FormulaElem> buildResidualForm() {
         final ArrayList<FormulaElem> residualForm = new ArrayList<FormulaElem>();
         for (int i = 0, length=residualElems.length; i < length; i++) {
-            final FormulaElem fe = new FormulaElem("+", residualElems[i], residualLabels[i]);
+            final FormulaElem fe = new FormulaElem("-", residualElems[i], residualLabels[i]);
             residualForm.add(fe);
         }
         return residualForm;
