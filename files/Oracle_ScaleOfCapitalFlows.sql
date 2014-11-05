@@ -1,10 +1,10 @@
-﻿#直接法（Cuddington method）：
-#	投资收益差额(S1) InvestmentIncomeDifferences S1
-#   其它部门差额(S2) OtherSectorsDifferences S2
-#   货币市场工具差额(S3) MoneyMarketInstrumentsDifferences S3
-#   股本证券差额(S4) EquitySecuritiesDifferences S4
-#   货币市场工具差额(S5) MoneyMarketInstrumentsDifferences S5
-#
+﻿--直接法（Cuddington method）：
+--	投资收益差额(S1) InvestmentIncomeDifferences S1
+--   其它部门差额(S2) OtherSectorsDifferences S2
+--   货币市场工具差额(S3) MoneyMarketInstrumentsDifferences S3
+--   股本证券差额(S4) EquitySecuritiesDifferences S4
+--   货币市场工具差额(S5) MoneyMarketInstrumentsDifferences S5
+--
 drop table SOCF_CUDDINGTON;
 drop table SOCF_RESIDUAL;
 drop table SOCF_QUARTER_SCALE;
@@ -37,7 +37,7 @@ create table SOCF_CUDDINGTON (
 create sequence SEQ_CUDDINGTON;
 
 
-#间接法（Residual method）：
+--间接法（Residual method）：
 
 create table SOCF_RESIDUAL(
     ID int primary key,
@@ -64,7 +64,7 @@ create table SOCF_RESIDUAL(
 
 create sequence SEQ_RESIDUAL;
 
-#quarterScale
+--quarterScale
 create table SOCF_QUARTER_SCALE (
     id int primary key,
     nian_jd varchar2(20) not null unique,
@@ -79,7 +79,7 @@ create table t_user(
     username varchar2(20) unique,
     password varchar2(20)
 );
-
+create sequence SEQ_USER;
 
 create table SOCF_YD_RESIDUAL (
     id int primary key,
@@ -88,10 +88,9 @@ create table SOCF_YD_RESIDUAL (
     fdi number(30,4),
     fbt number(30,4)
 );
-
 create sequence SEQ_YD_RESIDUAL;
 
-#MONTHSCALE
+--MONTHSCALE
 create table SOCF_MONTH_SCALE (
     id int primary key,
     nian_yd varchar2(20) not null unique,
@@ -99,12 +98,12 @@ create table SOCF_MONTH_SCALE (
 );
 create sequence SEQ_MONTH_SCALE;
 
-#Attribute
+--Attribute
 create table SOCF_ATTRIBUTE (
-    id int promary key,
+    id int primary key,
     attr_key varchar2(20) not null unique,
     attr_value varchar2(20)
 );
 create sequence SEQ_ATTRIBUTE;
 
-insert SOCF_ATTRIBUTE(id,attr_key,attr_value) values (SEQ_ATTRIBUTE.nextval,'isInit','false');
+insert into SOCF_ATTRIBUTE(id,attr_key,attr_value) values select SEQ_ATTRIBUTE.nextval,'isInit','false' from dual where not exists(select 1 from socf_attribute where attr_key='isInit');
