@@ -1,14 +1,18 @@
 package com.ace.capitalflows.ui.frame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +22,7 @@ import javax.swing.JTextField;
 
 import com.ace.capitalflows.entity.User;
 import com.ace.capitalflows.entity.UserControl;
+import com.ace.capitalflows.ui.component.BackgroundPanel;
 
 
 public class LoginFrame extends JFrame {
@@ -39,12 +44,19 @@ public class LoginFrame extends JFrame {
         this.setLocation(400, 200);
         this.setContentPane(createPane());
         this.setVisible(false);
+        this.setIconImage(new ImageIcon("image/icon.jpg").getImage());
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private Container createPane() {
-        final JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JLabel("中国资本流动测算系统需求分析",JLabel.CENTER), BorderLayout.NORTH);
+        final Image img = new ImageIcon("image/bg_login.jpg").getImage();
+        final JPanel panel = new BackgroundPanel(img);
+        panel.setLayout(new BorderLayout());
+        final JLabel title = new JLabel("中国资本流动测算系统需求分析",JLabel.CENTER);
+        title.setForeground(Color.orange);
+        title.setPreferredSize(new Dimension(100, 50));
+        panel.add(title, BorderLayout.NORTH);
         panel.add(createCenter(), BorderLayout.CENTER);
         panel.add(createSouth(),BorderLayout.SOUTH);
         return panel;
@@ -52,6 +64,7 @@ public class LoginFrame extends JFrame {
 
     private Component createSouth() {
         final JPanel panel = new JPanel();
+        panel.setOpaque(false);
         final JButton login = new JButton("登录");
         login.addActionListener(new ActionListener() {
             @Override
@@ -88,16 +101,23 @@ public class LoginFrame extends JFrame {
 
     private Component createCenter() {
         final JPanel panel = new JPanel(new GridLayout(2,3));
-        panel.add(new JLabel("用户名：",JLabel.RIGHT));
+        panel.setOpaque(false);
+        final JLabel lblUserName = new JLabel("用户名：",JLabel.CENTER);
+        lblUserName.setForeground(Color.orange);
+        panel.add(lblUserName);
         username = new JTextField();
         panel.add(username);
         usernameMsg = new JLabel();
+        usernameMsg.setForeground(Color.red);
         panel.add(usernameMsg);
 
-        panel.add(new JLabel("密码：",JLabel.RIGHT));
+        final JLabel lblPassword = new JLabel("密码：",JLabel.CENTER);
+        lblPassword.setForeground(Color.orange);
+        panel.add(lblPassword);
         password = new JPasswordField();
         panel.add(password);
         passwordMsg = new JLabel();
+        passwordMsg.setForeground(Color.red);
         panel.add(passwordMsg);
 
         username.addFocusListener(new FocusListener() {
