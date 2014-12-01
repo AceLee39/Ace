@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -57,9 +59,20 @@ public class RegisterFrame extends JFrame{
     }
 
     private void init() throws IOException {
-        this.setTitle("注册");
-        this.setSize(400, 200);
-        this.setLocation(400, 200);
+        this.setFont(new Font("System", Font.PLAIN, 14));
+        this.setSize(500, 300);
+        final Font f = this.getFont();
+        final FontMetrics fm = this.getFontMetrics(f);
+        final int x = fm.stringWidth("注册");
+        final int y = fm.stringWidth(" ");
+        final int z = this.getWidth()/2 - (x/2);
+        final int w = z/y;
+        String pad ="";
+        pad = String.format("%"+w+"s", pad);
+        this.setTitle(pad+"注册");
+//        this.setTitle("注册");
+//        this.setLocation(400, 200);
+        setLocationRelativeTo(null);
         this.setContentPane(createPane());
         final InputStream is = new FileInputStream("image/icon.jpg");
         this.setIconImage(ImageIO.read(is));
@@ -83,6 +96,7 @@ public class RegisterFrame extends JFrame{
 
     private Component createSouth() {
         final JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(100, 50));
         panel.setOpaque(false);
         final JButton register = new JButton("注册");
         register.addActionListener(new ActionListener() {

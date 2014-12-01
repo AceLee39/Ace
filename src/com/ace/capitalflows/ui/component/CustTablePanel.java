@@ -6,6 +6,7 @@
 // ============================================================================
 package com.ace.capitalflows.ui.component;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -30,8 +31,11 @@ public class CustTablePanel extends JPanel {
     public CustTablePanel() {
         tableModel = new DefaultTableModel();
         table.setModel(tableModel);
+        table.setForeground(Color.green);
+        table.getTableHeader().setForeground(Color.red);
         final double width = Toolkit.getDefaultToolkit().getScreenSize().width; //得到当前屏幕分辨率的高
-        table.setPreferredScrollableViewportSize(new Dimension((int)width-100, 608));
+        final double height = Toolkit.getDefaultToolkit().getScreenSize().height;//得到当前屏幕分辨率的宽
+        table.setPreferredScrollableViewportSize(new Dimension(((int)width/2)-100, ((int)height*2/3)-100));
         table.setEnabled(Boolean.FALSE);
         final JScrollPane jsTable = new JScrollPane(table);
         this.add(jsTable);

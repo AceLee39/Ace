@@ -6,7 +6,6 @@
 // ============================================================================
 package com.ace.capitalflows.ui.component;
 
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +33,6 @@ public class CustComboBoxPanel extends JPanel {
     private Vector<String> fromComboBoxData;
 
     public CustComboBoxPanel(final Vector<String> comboBoxData) {
-        this.setLayout(new GridLayout(1, 5));
         this.comboBoxData = comboBoxData;
         initData();
         initComponent();

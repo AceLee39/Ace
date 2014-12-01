@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -39,9 +41,20 @@ public class LoginFrame extends JFrame {
     }
 
     private void init() {
-        this.setTitle("登录");
-        this.setSize(400, 200);
-        this.setLocation(400, 200);
+//        this.setTitle("登录");
+        this.setSize(500, 300);
+        this.setFont(new Font("System", Font.PLAIN, 14));
+        final Font f = this.getFont();
+        final FontMetrics fm = this.getFontMetrics(f);
+        final int x = fm.stringWidth("登录");
+        final int y = fm.stringWidth(" ");
+        final int z = this.getWidth()/2 - (x/2);
+        final int w = z/y;
+        String pad ="";
+        pad = String.format("%"+w+"s", pad);
+        this.setTitle(pad+"登录");
+//        this.setLocation(400, 200);
+        setLocationRelativeTo(null);
         this.setContentPane(createPane());
         this.setVisible(false);
         this.setIconImage(new ImageIcon("image/icon.jpg").getImage());
@@ -64,6 +77,7 @@ public class LoginFrame extends JFrame {
 
     private Component createSouth() {
         final JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(100, 50));
         panel.setOpaque(false);
         final JButton login = new JButton("登录");
         login.addActionListener(new ActionListener() {

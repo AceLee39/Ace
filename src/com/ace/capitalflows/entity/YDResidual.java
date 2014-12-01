@@ -70,7 +70,7 @@ public class YDResidual {
     }
 
     public void calculate() {
-        this.ydResidual = String.format("%.4f", s - (fdi + fbt));
+        this.ydResidual = String.format("%.2f", s - (fdi + fbt));
     }
 
 }

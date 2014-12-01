@@ -7,6 +7,8 @@
 // ============================================================================
 package com.ace.capitalflows.ui.component;
 
+import java.awt.Color;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -52,6 +54,7 @@ public class CustMenuBar extends JMenuBar {
 
     private void init() {
         final JMenu baseData = new JMenu(UILabelConstant.UI_LABEL_BASEDATA);
+        baseData.setForeground(Color.blue);
         yearCuddingtonData = new JMenuItem(UILabelConstant.UI_LABEL_YEAR_CUDDINGTON_DATA);
         baseData.add(yearCuddingtonData);
         yearResidualData = new JMenuItem(UILabelConstant.UI_LABEL_YEAR_RESIDUAL_DATA);
@@ -65,6 +68,7 @@ public class CustMenuBar extends JMenuBar {
         this.add(baseData);
 
         final JMenu formula  = new JMenu(UILabelConstant.UI_LABEL_FORMULA);
+        formula.setForeground(Color.blue);
         yearFormula = new JMenuItem(UILabelConstant.UI_LABEL_YEARFORMULA);
         formula.add(yearFormula);
         quarterFormula = new JMenuItem(UILabelConstant.UI_LABEL_QUARTERFORMULA);
@@ -74,6 +78,7 @@ public class CustMenuBar extends JMenuBar {
         this.add(formula);
 
         final JMenu scale  = new JMenu(UILabelConstant.UI_LABEL_SCALE);
+        scale.setForeground(Color.blue);
         yearScale = new CustMenuItem("NianD");
         scale.add(yearScale);
         quarterScale = new CustMenuItem("NianJD");
@@ -83,6 +88,7 @@ public class CustMenuBar extends JMenuBar {
         this.add(scale);
 
         final JMenu backend  = new JMenu(UILabelConstant.UI_LABEL_BACKEND);
+        backend.setForeground(Color.blue);
         importData = new JMenuItem(UILabelConstant.UI_LABEL_IMPORTDATA);
         backend.add(importData);
         showChar = new JMenuItem(UILabelConstant.UI_LABEL_SHOWCHAR);

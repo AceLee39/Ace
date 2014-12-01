@@ -7,6 +7,8 @@
 package com.ace.capitalflows.ui.frame;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Toolkit;
 
 import javax.swing.JMenuItem;
@@ -36,8 +38,20 @@ public class MainFrame extends BaseFrame {
         super(title);
         final double width = Toolkit.getDefaultToolkit().getScreenSize().width; //得到当前屏幕分辨率的高
         final double height = Toolkit.getDefaultToolkit().getScreenSize().height;//得到当前屏幕分辨率的宽
-        this.setSize((int)width,(int)height);//设置大小
-        this.setLocation(0,0); //设置窗体居中显示
+        this.setSize((int)width/2,(int)height*4/5);//设置大小
+        this.setFont(new Font("System", Font.PLAIN, 14));
+        final Font f = this.getFont();
+        final FontMetrics fm = this.getFontMetrics(f);
+        final int x = fm.stringWidth("短期资本流动规模测试系统");
+        final int y = fm.stringWidth(" ");
+        final int z = this.getWidth()/2 - (x/2);
+        final int w = z/y;
+        String pad ="";
+        pad = String.format("%"+w+"s", pad);
+        this.setTitle(pad+"短期资本流动规模测试系统");
+        this.setResizable(false);
+//        this.setLocation(0,0); //设置窗体居中显示
+        setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

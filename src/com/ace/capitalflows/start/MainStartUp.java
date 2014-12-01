@@ -30,8 +30,8 @@ public class MainStartUp {
     public static void main(final String[] args) {
        // System.out.println(YDResidualMysqlModel.class.getName());
        // System.out.println(Class.forName("com.ace.capitalflows.db.model.YDResidualMysqlModel"));
-//       PropertiesUtil.initDBInstance();
-      PropertiesUtil.initDBOracleInstance();
+       PropertiesUtil.initDBInstance();
+//      PropertiesUtil.initDBOracleInstance();
       final String isInit = DBUtils.getAttributeByKey("isInit");
       if (StringUtils.equalsIgnoreCase(isInit, "false")) {
           final Map<String, File> fileMap = new HashMap<String, File>();
@@ -53,6 +53,6 @@ public class MainStartUp {
         }
     });
 //      System.out.println("main end");
-        //new RegisterFrame();
+//        new RegisterFrame();
     }
 }
