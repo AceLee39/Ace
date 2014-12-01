@@ -11,8 +11,12 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -29,15 +33,21 @@ public class CustTablePanel extends JPanel {
     private String[][] curTableData;
 
     public CustTablePanel() {
+        final DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();// 设置table内容居中
+        // tcr.setHorizontalAlignment(JLabel.CENTER);
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);// 这句和上句作用一样
+        table.setDefaultRenderer(Object.class, tcr);
         tableModel = new DefaultTableModel();
         table.setModel(tableModel);
         table.setForeground(Color.green);
         table.getTableHeader().setForeground(Color.red);
         final double width = Toolkit.getDefaultToolkit().getScreenSize().width; //得到当前屏幕分辨率的高
         final double height = Toolkit.getDefaultToolkit().getScreenSize().height;//得到当前屏幕分辨率的宽
-        table.setPreferredScrollableViewportSize(new Dimension(((int)width/2)-100, ((int)height*2/3)-100));
+        table.setPreferredScrollableViewportSize(new Dimension(((int)width-25), 550));
         table.setEnabled(Boolean.FALSE);
         final JScrollPane jsTable = new JScrollPane(table);
+        jsTable.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
+        jsTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.add(jsTable);
     }
 

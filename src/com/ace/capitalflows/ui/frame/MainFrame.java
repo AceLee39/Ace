@@ -38,7 +38,7 @@ public class MainFrame extends BaseFrame {
         super(title);
         final double width = Toolkit.getDefaultToolkit().getScreenSize().width; //得到当前屏幕分辨率的高
         final double height = Toolkit.getDefaultToolkit().getScreenSize().height;//得到当前屏幕分辨率的宽
-        this.setSize((int)width/2,(int)height*4/5);//设置大小
+        this.setSize((int)width, (int)height);//设置大小
         this.setFont(new Font("System", Font.PLAIN, 14));
         final Font f = this.getFont();
         final FontMetrics fm = this.getFontMetrics(f);

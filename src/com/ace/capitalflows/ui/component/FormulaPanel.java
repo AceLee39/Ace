@@ -47,7 +47,8 @@ public class FormulaPanel extends JPanel {
      */
     private void builderLabel(final String string, final String string2, final List<FormulaElem> formulas) {
         if (CollectionUtils.isNotEmpty(formulas)) {
-            this.add(new JLabel(string, JLabel.CENTER));
+            final JPanel panel = new JPanel();
+            panel.add(new JLabel(string, JLabel.LEFT));
             final StringBuilder sb = new StringBuilder();
             sb.append(string2);
             boolean first = true;
@@ -58,7 +59,8 @@ public class FormulaPanel extends JPanel {
                 first = false;
                 sb.append(fe.getFieldId());
             }
-            this.add(new JLabel(sb.toString(), JLabel.CENTER));
+            panel.add(new JLabel(sb.toString(), JLabel.LEFT));
+            this.add(panel);
         }
     }
 }

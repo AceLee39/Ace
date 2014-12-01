@@ -98,3 +98,5 @@ create table SOCF_ATTRIBUTE (
 );
 
 insert into SOCF_ATTRIBUTE(id,attr_key,attr_value) select null, 'isInit','false' from dual where not exists (select 1 from socf_attribute where attr_key='isInit') ;
+
+commit;

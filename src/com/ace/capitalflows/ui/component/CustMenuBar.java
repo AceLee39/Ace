@@ -56,6 +56,7 @@ public class CustMenuBar extends JMenuBar {
         final JMenu baseData = new JMenu(UILabelConstant.UI_LABEL_BASEDATA);
         baseData.setForeground(Color.blue);
         yearCuddingtonData = new JMenuItem(UILabelConstant.UI_LABEL_YEAR_CUDDINGTON_DATA);
+
         baseData.add(yearCuddingtonData);
         yearResidualData = new JMenuItem(UILabelConstant.UI_LABEL_YEAR_RESIDUAL_DATA);
         baseData.add(yearResidualData);
@@ -98,6 +99,22 @@ public class CustMenuBar extends JMenuBar {
         deleteAll = new JMenuItem(UILabelConstant.UI_LABEL_DELETEALL);
         backend.add(deleteAll);
         this.add(backend);
+
+        setMenuItemColor(yearResidualData);
+        setMenuItemColor(yearCuddingtonData);
+        setMenuItemColor(quarterResidualData);
+        setMenuItemColor(quarterCuddingtonData);
+        setMenuItemColor(monthData);
+        setMenuItemColor(yearFormula);
+        setMenuItemColor(quarterFormula);
+        setMenuItemColor(monthFormula);
+        setMenuItemColor(deleteAll);
+        setMenuItemColor(update);
+        setMenuItemColor(monthScale);
+        setMenuItemColor(quarterScale);
+        setMenuItemColor(yearScale);
+        setMenuItemColor(showChar);
+        setMenuItemColor(importData);
         /*final JMenu menu = new JMenu("File");
         importData = new JMenuItem("Import Data");
         menu.add(importData);
@@ -111,6 +128,10 @@ public class CustMenuBar extends JMenuBar {
         deleteAll = new JMenuItem("DeleteAllData");
         edit.add(deleteAll);
         this.add(edit);*/
+    }
+
+    public void setMenuItemColor(final JMenuItem item) {
+        item.setForeground(Color.magenta);
     }
 
     protected void addButtonActionListener() {
