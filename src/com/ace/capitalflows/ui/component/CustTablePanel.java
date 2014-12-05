@@ -11,10 +11,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -46,8 +44,8 @@ public class CustTablePanel extends JPanel {
         table.setPreferredScrollableViewportSize(new Dimension(((int)width-25), 550));
         table.setEnabled(Boolean.FALSE);
         final JScrollPane jsTable = new JScrollPane(table);
-        jsTable.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
-        jsTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//        jsTable.setHorizontalScrollBar(new JScrollBar(JScrollBar.HORIZONTAL));
+//        jsTable.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         this.add(jsTable);
     }
 
